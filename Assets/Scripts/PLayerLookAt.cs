@@ -14,15 +14,19 @@ public class PLayerLookAt : MonoBehaviour
         if (showCursor == false)
             Cursor.visible = false; //Cacher le cursor
 
-        //this.transform.localEulerAngles.y -= 153.372f;
+        this.sensitivity = 1.0f;
     }
 
     
     void Update()
     {
-        float newRotationY = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
+        /*float newRotationY = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
         float newRotationX = transform.localEulerAngles.x + Input.GetAxis("Mouse Y") * sensitivity;
 
         this.transform.localEulerAngles = new Vector3(newRotationX, newRotationY, 0);
+         */
+        float x = Input.GetAxis("Mouse X") * sensitivity;
+        float y = Input.GetAxis("Mouse Y") * sensitivity;
+        this.transform.Rotate(y, x, 0);
     }
 }

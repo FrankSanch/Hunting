@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class bow : MonoBehaviour
 {
-    private GameObject bowMiddle;//milieu de l'arc
-    private GameObject bowTop;//top de l'arc
+    public GameObject bowMiddle;//milieu de l'arc
+    public GameObject bowTop;//top de l'arc
     private GameObject bowBot; //bas de l'arc
 
 
