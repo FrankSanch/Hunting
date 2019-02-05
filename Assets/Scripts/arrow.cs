@@ -14,6 +14,7 @@ public class arrow : MonoBehaviour
         //je veux voir si mes commits fonctionnent
         //MOER TOOO!
         body = GetComponent<Rigidbody>();
+        transform.rotation = Quaternion.LookRotation(body.velocity);
 
     }
 
