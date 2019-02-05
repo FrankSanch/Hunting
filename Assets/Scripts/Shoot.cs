@@ -14,7 +14,7 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject arrowClone = Instantiate(arrowModele, arrowspawn.position, Quaternion.identity);
+            GameObject arrowClone = Instantiate(arrowModele, arrowspawn.position, arrowspawn.rotation);
             Rigidbody rigidbodycomponent = arrowClone.gameObject.GetComponent<Rigidbody>();
             rigidbodycomponent.velocity = cam.transform.forward * shootpower;
 
