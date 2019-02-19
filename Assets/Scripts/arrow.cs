@@ -8,7 +8,6 @@ public class arrow : MonoBehaviour
     private float lifeTime = 2f;
     private float timer;
     private bool hitsomething = false;
-
     void Start()
     {
         
@@ -31,6 +30,7 @@ public class arrow : MonoBehaviour
     private void OnCollision(Collision collision)
     {
         hitsomething = true;
+        Stick();
     }
 
     private void Stick()
