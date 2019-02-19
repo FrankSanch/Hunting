@@ -37,7 +37,7 @@ public class bow : MonoBehaviour
         bowBot.name = "BowBot";
 
         bowBot.GetComponent<CapsuleCollider>().isTrigger = true;
-
+        
     }
 
 
