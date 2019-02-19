@@ -21,15 +21,16 @@ public class arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hitsomething==false)
+        if (!hitsomething)
         {
             transform.rotation = Quaternion.LookRotation(body.velocity);
         }
             
     }
 
-    private void OnCollision(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
+        
         hitsomething = true;
         Stick();
     }
