@@ -16,6 +16,7 @@ public class Shoot : MonoBehaviour
         {
             GameObject arrowClone = Instantiate(arrowPrefab, arrowspawn.position, Quaternion.identity);
             Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
+            arrowClone.name = "arrow";
             rigidbodycomponent.velocity = cam.transform.forward * shootpower;
 
         }
