@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 2108210716, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: Green
   m_EditorClassIdentifier: 
-  topLeft: {r: 0.2990388, g: 0.6037736, b: 0.3121848, a: 1}
-  topRight: {r: 0.17443931, g: 0.754717, b: 0.25607267, a: 1}
-  bottomLeft: {r: 0.35944197, g: 0.8867924, b: 0.17986828, a: 1}
-  bottomRight: {r: 0, g: 1, b: 0.04240513, a: 1}
+  topLeft: {r: 0, g: 0, b: 0, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomLeft: {r: 0, g: 0, b: 0, a: 1}
+  bottomRight: {r: 1, g: 1, b: 1, a: 1}
