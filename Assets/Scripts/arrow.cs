@@ -14,6 +14,7 @@ public class arrow : MonoBehaviour
 
         body = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.LookRotation(body.velocity);
+        
 
     }
 
