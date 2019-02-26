@@ -51,6 +51,6 @@ public class destroyCubeTest : MonoBehaviour
         yield return new WaitForSeconds(time);
         //On detruit le gameObject
         Destroy(this.gameObject);
-        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        //SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 }
