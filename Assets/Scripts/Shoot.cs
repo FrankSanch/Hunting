@@ -7,9 +7,9 @@ public class Shoot : MonoBehaviour
     public Camera cam;
     public GameObject arrowPrefab;
     public Transform arrowspawn;
-    private float shootpower = 1f;
+    public float shootpower = 5f;
 
-
+    
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -22,6 +22,7 @@ public class Shoot : MonoBehaviour
             GameObject arrowClone = Instantiate(arrowPrefab, arrowspawn.position, Quaternion.identity);
             Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
             arrowClone.name = "arrow";
+            //arrowClone.tag = "arrow";
             rigidbodycomponent.velocity = cam.transform.forward * shootpower;
             shootpower = 1f;
 

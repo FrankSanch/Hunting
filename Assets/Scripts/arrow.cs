@@ -8,17 +8,18 @@ public class arrow : MonoBehaviour
     private float lifeTime = 2f;
     private float timer;
     private bool hitsomething = false;
+
     void Start()
-    {
-        
+    {   
 
         body = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.LookRotation(body.velocity);
+
+       // this.gameObject.name = "arrow";
         
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!hitsomething)

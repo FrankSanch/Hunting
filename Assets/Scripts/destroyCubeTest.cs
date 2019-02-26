@@ -8,11 +8,12 @@ public class destroyCubeTest : MonoBehaviour
     
     private IEnumerator coroutine;//S'execute en paralele
     public float force = 3000.0f;//La force de l'impact
-    int collisionCounter;
+   
+    void Start()
+    {
+        float collisionCounter = 1.0f;
+    }
   
-    
-
-    
 
     //S'execute quand la fleche touche a la cible
     private void OnCollisionEnter(Collision collision)
@@ -34,7 +35,7 @@ public class destroyCubeTest : MonoBehaviour
             //collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             collisionCounter++;
 
-            coroutine = cubeCollision(3);
+            coroutine = cubeCollision(1);
             StartCoroutine(coroutine);
 
             if(collisionCounter == 2)
@@ -42,22 +43,13 @@ public class destroyCubeTest : MonoBehaviour
                 coroutine = cubeCollision(6);
                 StartCoroutine(coroutine);
                 SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
-
             }
         }
 
-        
+    }
+    
 
-    }
-    void Start()
-    {
-        collisionCounter = 0;
-    }
-
-    void Update()
-    {
-      
-    }
+    
 
     //La fonction qui fait attendre un certain nombre de temps
     private IEnumerator cubeCollision(int time)
@@ -66,5 +58,6 @@ public class destroyCubeTest : MonoBehaviour
         yield return new WaitForSeconds(time);
         //On detruit le gameObject
         Destroy(this.gameObject);
-        }
+        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+    }
 }
