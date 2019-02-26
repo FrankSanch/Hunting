@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class destroyCubeTest : MonoBehaviour
 {
     
     private IEnumerator coroutine;//S'execute en paralele
     public float force = 3000.0f;//La force de l'impact
+    int collisionCounter;
   
     
 
@@ -30,19 +32,26 @@ public class destroyCubeTest : MonoBehaviour
         {
             collision.gameObject.transform.SetParent(this.transform, true);
             //collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-          
+            collisionCounter++;
 
             coroutine = cubeCollision(3);
             StartCoroutine(coroutine);
 
+            if(collisionCounter == 2)
+            {
+                coroutine = cubeCollision(6);
+                StartCoroutine(coroutine);
+                SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
 
+            }
         }
-            
+
+        
 
     }
     void Start()
     {
-       
+        collisionCounter = 0;
     }
 
     void Update()
