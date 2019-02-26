@@ -21,6 +21,11 @@ public class arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        if(timer >= lifeTime)
+        {
+            Destroy(gameObject);
+        }
         if (!hitsomething)
         {
             transform.rotation = Quaternion.LookRotation(body.velocity);
@@ -30,9 +35,14 @@ public class arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         
-        hitsomething = true;
-        Stick();
+        if (collision.collider.tag != "Arrow")
+        {
+            hitsomething = true;
+            Stick();
+        }
+        
     }
 
     private void Stick()
