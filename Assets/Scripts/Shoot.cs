@@ -8,7 +8,7 @@ public class Shoot : MonoBehaviour
     public GameObject arrowPrefab;
     public Transform arrowspawn;
 
-    
+    public Vector3 windVelocity = Vector3.zero;
 
     private float shootPower = 3f;
     private float shootTime = 1f;
@@ -32,7 +32,9 @@ public class Shoot : MonoBehaviour
                 GameObject arrowClone = Instantiate(arrowPrefab, arrowspawn.position, Quaternion.identity);
                 Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
                 arrowClone.name = "arrow";
-                rigidbodycomponent.velocity = cam.transform.forward * shootPower;
+
+                rigidbodycomponent.velocity = cam.transform.forward * shootPower + windVelocity ;
+
                 shootPower = 3f;
                 timer = 0f;
             }
