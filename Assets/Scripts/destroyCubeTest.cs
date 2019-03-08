@@ -9,8 +9,6 @@ public class destroyCubeTest : MonoBehaviour
     private IEnumerator coroutine;//S'execute en paralele
     public float force = 3000.0f;//La force de l'impact
    
-   
-  
 
     //S'execute quand la fleche touche a la cible
     private void OnCollisionEnter(Collision collision)
