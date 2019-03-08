@@ -23,7 +23,7 @@ public class arrow : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= lifeTime)
+        if(timer >= lifeTime && hitsomething)
         {
             Destroy(gameObject);
         }
@@ -42,6 +42,7 @@ public class arrow : MonoBehaviour
         {
             hitsomething = true;
             Stick();
+            timer = 0f;
         }
         
     }
