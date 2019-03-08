@@ -239,7 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5ea065942132c44a74730e90e745e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {x: 0, y: 0, z: 0}
   targetCount: 5
   targetPrefab: {fileID: 6612517491287385242, guid: fb26e0ee1b4626549b5c131b306429d9,
     type: 3}
@@ -329,7 +328,7 @@ GameObject:
   - component: {fileID: 1058395604}
   m_Layer: 0
   m_Name: bow
-  m_TagString: Untagged
+  m_TagString: Bow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,7 +576,7 @@ TerrainCollider:
   m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 77f5ffbf4c01a0e4d92bf415aceebb01, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &1455790881
 Terrain:
   m_ObjectHideFlags: 0
@@ -1063,6 +1062,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3206195007718995391, guid: 2e5ddedb3a72d744eacad370da2eb869,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bow
       objectReference: {fileID: 0}
     - target: {fileID: 3206195007718995390, guid: 2e5ddedb3a72d744eacad370da2eb869,
         type: 3}

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class destroyCubeTest : MonoBehaviour
 {
@@ -26,29 +25,20 @@ public class destroyCubeTest : MonoBehaviour
         //Verifier si la target est bel et bien touche par une fleche et non par le sol
        if(collision.gameObject.name == "arrow")
         {
+            //La flèche colle au cube 
             collision.gameObject.transform.SetParent(this.transform, true);
-            //collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
 
-            coroutine = cubeCollision(7);
-            StartCoroutine(coroutine);
-
-                //SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
-            
+            coroutine = cubeCollision(3);
+            StartCoroutine(coroutine);            
         }
-
     }
     
-
-    
-
     //La fonction qui fait attendre un certain nombre de temps
     private IEnumerator cubeCollision(int time)
-        {
-
+    {
         yield return new WaitForSeconds(time);
-        //On detruit le gameObject
-        Destroy(this.gameObject);
-        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        //On desactive le gameObject
+        gameObject.SetActive(false);
     }
 }
