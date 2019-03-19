@@ -5,17 +5,27 @@ using UnityEngine;
 public class arrow : MonoBehaviour
 {
     Rigidbody body;
+
     private float lifeTime = 3f;
+
     private float timer;
     private bool hitsomething = false;
+    private Vector3 wind;
 
-
+    GameObject Gamedataboy;
     void Start()
     {
+        Gamedataboy = GameObject.Find("Gamedata");
+        wind = new Vector3();
         body = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.LookRotation(body.velocity);
+        
     }
+    void FixedUpdate()
+    {
 
+        body.AddForce(wind * 10);
+    }
     void Update()
     {
         timer += Time.deltaTime;
@@ -23,11 +33,10 @@ public class arrow : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //J'ai trouvé un meilleur moyen pour coller la flèche (destroyCubeTest.cs)
-        /*if (!hitsomething)
+        if (!hitsomething)
         {
             transform.rotation = Quaternion.LookRotation(body.velocity);
-        }*/
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -44,5 +53,11 @@ public class arrow : MonoBehaviour
     private void Stick()
     {
         body.constraints = RigidbodyConstraints.FreezeAll;
+    }
+    public void setVector(float x, float y ,float z)
+    {
+        wind.x = x;
+        wind.y = y;
+        wind.z = z;
     }
 }
