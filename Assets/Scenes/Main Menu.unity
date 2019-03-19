@@ -1094,11 +1094,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1200,7 +1200,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1492321768}
-        m_MethodName: PlayGame
+        m_MethodName: StartNormalModeMobile
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1468,11 +1468,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1663,7 +1663,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1492321768}
-        m_MethodName: PlayGame
+        m_MethodName: StartNormalModeStatique
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1857,11 +1857,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2038,7 +2038,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1492321768}
-        m_MethodName: PlayGame
+        m_MethodName: StartHuntMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2232,11 +2232,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2258,6 +2258,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380894850}
   m_CullTransparentMesh: 0
+  m_havePropertiesChanged: 0
+  m_isInputParsingRequired: 0
 --- !u!1 &383979283
 GameObject:
   m_ObjectHideFlags: 0
@@ -3249,11 +3251,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4362,11 +4364,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5033,7 +5035,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5520,9 +5522,10 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minCurve:
+  m_havePropertiesChanged: 0
         serializedVersion: 2
         m_Curve:
-        - serializedVersion: 3
+  m_isInputParsingRequired: 0
           time: 0
           value: 1
           inSlope: 0
@@ -6186,6 +6189,49 @@ ParticleSystem:
       minMaxState: 1
       scalar: 1
       minScalar: 1
+--- !u!1 &1001365903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001365905}
+  - component: {fileID: 1001365904}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1001365904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001365903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f623116571152524786bd602020cada2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1001365905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001365903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 556.764, y: 312.81613, z: 194.53851}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6882,9 +6928,10 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minCurve:
+  m_havePropertiesChanged: 0
         serializedVersion: 2
         m_Curve:
-        - serializedVersion: 3
+  m_isInputParsingRequired: 0
           time: 0
           value: 0
           inSlope: 0
@@ -7056,6 +7103,8 @@ ParticleSystem:
           time: 1
           value: 0
           inSlope: 0
+  m_havePropertiesChanged: 0
+  m_isInputParsingRequired: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -7063,6 +7112,8 @@ ParticleSystem:
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
+  m_havePropertiesChanged: 0
+  m_isInputParsingRequired: 0
         m_RotationOrder: 4
     radial:
       serializedVersion: 2
@@ -7389,9 +7440,10 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     inWorldSpace: 0
-    randomizePerFrame: 0
+  m_havePropertiesChanged: 0
   ExternalForcesModule:
     enabled: 0
+  m_isInputParsingRequired: 0
     multiplier: 1
     influenceFilter: 0
     influenceMask:
@@ -7409,7 +7461,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
+  m_IsActive: 0
           value: 1
           inSlope: 0
           outSlope: 0
@@ -8004,6 +8056,7 @@ ParticleSystem:
       minScalar: 1
       maxCurve:
         serializedVersion: 2
+        m_MethodName: PlayGame
         m_Curve:
         - serializedVersion: 3
           time: 0
@@ -8231,7 +8284,8 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
+  m_havePropertiesChanged: 0
+  m_isInputParsingRequired: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -8723,13 +8777,14 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+  m_havePropertiesChanged: 0
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
       scalar: 0
       minScalar: 0
       maxCurve:
-        serializedVersion: 2
+  m_isInputParsingRequired: 0
         m_Curve:
         - serializedVersion: 3
           time: 0
@@ -8916,6 +8971,8 @@ ParticleSystem:
           time: 1
           value: 1
           inSlope: 0
+  m_havePropertiesChanged: 0
+  m_isInputParsingRequired: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -9764,7 +9821,7 @@ GameObject:
   - component: {fileID: 729757698}
   - component: {fileID: 729757699}
   m_Layer: 5
-  m_Name: MasterSlider
+  m_havePropertiesChanged: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9803,7 +9860,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_isInputParsingRequired: 0
   m_Navigation:
     m_Mode: 3
     m_SelectOnUp: {fileID: 0}
@@ -10110,11 +10167,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -10709,11 +10766,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

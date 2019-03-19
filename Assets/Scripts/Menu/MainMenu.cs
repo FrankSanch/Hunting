@@ -5,10 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame ()
+    public void StartNormalModeStatique()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameData.windOn = false;
+        GameData.targetMobileOn = false;
+    }
 
+    public void StartNormalModeMobile()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameData.windOn = false;
+        GameData.targetMobileOn = true;
+    }
+
+    //What the frick is this
+    public void StartMarathonMode()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameData.windOn = false;
+        GameData.targetMobileOn = false;
+    }
+
+    public void StartHuntMode()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameData.windOn = true;
+        GameData.targetMobileOn = true;
     }
 
     public void QuitGame()

@@ -7,10 +7,7 @@ public class destroyCubeTest : MonoBehaviour
     
     private IEnumerator coroutine;//S'execute en paralele
     public float force = 3000.0f;//La force de l'impact
-  
-    
-
-    
+   
 
     //S'execute quand la fleche touche a la cible
     private void OnCollisionEnter(Collision collision)
@@ -28,34 +25,20 @@ public class destroyCubeTest : MonoBehaviour
         //Verifier si la target est bel et bien touche par une fleche et non par le sol
        if(collision.gameObject.name == "arrow")
         {
+            //La flèche colle au cube 
             collision.gameObject.transform.SetParent(this.transform, true);
-            //collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-          
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
 
             coroutine = cubeCollision(3);
-            StartCoroutine(coroutine);
-
-
+            StartCoroutine(coroutine);            
         }
-            
-
     }
-    void Start()
-    {
-       
-    }
-
-    void Update()
-    {
-      
-    }
-
+    
     //La fonction qui fait attendre un certain nombre de temps
     private IEnumerator cubeCollision(int time)
-        {
-
+    {
         yield return new WaitForSeconds(time);
-        //On detruit le gameObject
-        Destroy(this.gameObject);
-        }
+        //On desactive le gameObject
+        gameObject.SetActive(false);
+    }
 }
