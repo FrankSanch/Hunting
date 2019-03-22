@@ -30,7 +30,8 @@ public class destroyCubeTest : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
 
             coroutine = cubeCollision(3);
-            StartCoroutine(coroutine);            
+            StartCoroutine(coroutine);      
+            
         }
     }
     

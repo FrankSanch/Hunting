@@ -16,7 +16,6 @@ public class arrow : MonoBehaviour
     void Start()
     {
         Gamedataboy = GameObject.Find("Gamedata");
-        wind = new Vector3();
         body = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.LookRotation(body.velocity);
         

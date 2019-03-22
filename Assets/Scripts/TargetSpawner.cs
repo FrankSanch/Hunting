@@ -6,6 +6,8 @@ using Random = System.Random;
 
 public class TargetSpawner : MonoBehaviour
 {
+    public GameObject bow;
+    
     private bool canMove = false;
 
     public int targetCountInitial = 5;
@@ -102,6 +104,8 @@ public class TargetSpawner : MonoBehaviour
         {
             targets.Remove(target);
             Destroy(target);
+            Shoot shootComponent = bow.GetComponent<Shoot>();
+            shootComponent.changeWind();
             targetCount--;
         }
         if(targetCount == 0)

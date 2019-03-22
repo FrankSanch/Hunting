@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5ea065942132c44a74730e90e745e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bow: {fileID: 1058395600}
   targetCountInitial: 5
   targetPrefab: {fileID: 6612517491287385242, guid: fb26e0ee1b4626549b5c131b306429d9,
     type: 3}
@@ -308,6 +309,8 @@ MonoBehaviour:
   arrowPrefab: {fileID: 1834260410195490025, guid: 9a81f1c15d03cfc42a568fe4ad155de8,
     type: 3}
   arrowspawn: {fileID: 290209152}
+  yolo: {fileID: 0}
+  windVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &1189938642
 GameObject:
   m_ObjectHideFlags: 0

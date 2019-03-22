@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = System.Random;
 
 public class Shoot : MonoBehaviour
 {
@@ -15,10 +15,15 @@ public class Shoot : MonoBehaviour
     private float timer;
     private const float shootPowerIncrease = 0.5f;
 
-    /*void Start()
+    public Vector3 windVelocity = Vector3.zero;
+    private int maxWindVelocity = 400;
+    private int minWindVelocity = -400;
+    private Random random = new Random();
+
+    void Start()
     {
-       
-    }*/
+        changeWind();
+    }
 
     void Update()
     {
@@ -36,11 +41,11 @@ public class Shoot : MonoBehaviour
             {
                 
                 GameObject arrowClone = Instantiate(arrowPrefab, arrowspawn.position, Quaternion.identity);
-                
-            
+
                 Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
+                arrow arrowComponent = arrowClone.GetComponent<arrow>();
                 arrowClone.name = "arrow";
-                arrowClone.GetComponent<arrow>();
+                arrowComponent.setVector(windVelocity.x, windVelocity.y, windVelocity.z);
                 rigidbodycomponent.velocity = cam.transform.forward * shootPower ;
 
                 shootPower = 3f;
@@ -49,5 +54,9 @@ public class Shoot : MonoBehaviour
             
         }
         
+    }
+    public void changeWind()
+    {
+        windVelocity = new Vector3(random.Next(minWindVelocity, maxWindVelocity),0, random.Next(minWindVelocity, maxWindVelocity)) * 0.01f;
     }
 }
