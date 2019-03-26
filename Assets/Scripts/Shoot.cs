@@ -57,6 +57,6 @@ public class Shoot : MonoBehaviour
     }
     public void changeWind()
     {
-        windVelocity = new Vector3(random.Next(minWindVelocity, maxWindVelocity),0, random.Next(minWindVelocity, maxWindVelocity)) * 0.01f;
+        //windVelocity = new Vector3(random.Next(minWindVelocity, maxWindVelocity),0, random.Next(minWindVelocity, maxWindVelocity)) * 0.01f;
     }
 }
