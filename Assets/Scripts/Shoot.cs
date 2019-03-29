@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
+using UnityEngine.UI;
 
 public class Shoot : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Shoot : MonoBehaviour
     private int minWindVelocity = -400;
     private Random random = new Random();
 
+    public Slider mainSlider;
+
     void Start()
     {
         changeWind();
@@ -35,28 +38,31 @@ public class Shoot : MonoBehaviour
 
 
                 shootPower += shootPowerIncrease;
+                mainSlider.value = shootPower;
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                
+
                 GameObject arrowClone = Instantiate(arrowPrefab, arrowspawn.position, Quaternion.identity);
 
                 Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
                 arrow arrowComponent = arrowClone.GetComponent<arrow>();
                 arrowClone.name = "arrow";
                 arrowComponent.setVector(windVelocity.x, windVelocity.y, windVelocity.z);
-                rigidbodycomponent.velocity = cam.transform.forward * shootPower ;
+                rigidbodycomponent.velocity = cam.transform.forward * shootPower;
 
                 shootPower = 3f;
                 timer = 0f;
+                mainSlider.value = shootPower;
             }
-            
+
         }
-        
+
     }
     public void changeWind()
     {
-        windVelocity = new Vector3(random.Next(minWindVelocity, maxWindVelocity),0, random.Next(minWindVelocity, maxWindVelocity)) * 0.01f;
+        windVelocity = new Vector3(random.Next(minWindVelocity, maxWindVelocity), 0, random.Next(minWindVelocity, maxWindVelocity)) * 0.01f;
     }
+
 }
