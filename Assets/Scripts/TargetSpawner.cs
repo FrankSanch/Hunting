@@ -10,12 +10,18 @@ public class TargetSpawner : MonoBehaviour
     
     private bool canMove = false;
 
+
     public int targetCountInitial = 5;
-    private int targetCount;
+    private int targetCount = 0;
+    public int remainingTargets = 5;
+
+
     private List<GameObject> targets = new List<GameObject>();
     private List<float> mvtSpeeds = new List<float>();
+
     private float targetScale = 10;
     public GameObject targetPrefab;
+    
 
     private Random random;
 
@@ -31,9 +37,13 @@ public class TargetSpawner : MonoBehaviour
     {
         canMove = GameData.targetMobileOn;
         random = new Random();
-        targetCount = targetCountInitial;
 
-        for (int i = 0; i < targetCountInitial; i++)
+        SpawnTargets(1);
+    }
+
+    void SpawnTargets(int count)
+    {
+        for (int i = 0; i < count; i++)
         {
             Vector3 spawn = CreateSpawn();
 
@@ -48,14 +58,17 @@ public class TargetSpawner : MonoBehaviour
             if (canMove)
             {
                 float speed = random.Next(minSpeed, maxSpeed); // * (1 / Vector3.Distance(target.transform.position, transform.position));
-                if(i%2 == 0)
+                if (i % 2 == 0)
                 {
                     speed = -speed;
                 }
 
                 mvtSpeeds.Add(speed);
             }
+
             targets.Add(target);
+            targetCount++;
+            remainingTargets--;
         }
     }
 
@@ -108,7 +121,14 @@ public class TargetSpawner : MonoBehaviour
             shootComponent.changeWind();
             targetCount--;
         }
+        if(remainingTargets > 0 && targetCount < 1)
+        {
+            SpawnTargets(1);
+        }
+
         if(targetCount == 0)
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+
     }
 }
