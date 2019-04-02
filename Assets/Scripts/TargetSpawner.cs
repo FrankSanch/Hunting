@@ -19,7 +19,7 @@ public class TargetSpawner : MonoBehaviour
     private List<GameObject> targets = new List<GameObject>();
     private List<float> mvtSpeeds = new List<float>();
 
-    private float targetScale = 10;
+    private float targetScale = 1;
     public GameObject targetPrefab;
     
 
