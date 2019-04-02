@@ -17,8 +17,8 @@ public class arrow : MonoBehaviour
     {
         Gamedataboy = GameObject.Find("Gamedata");
         body = GetComponent<Rigidbody>();
-        transform.rotation = Quaternion.LookRotation(body.velocity);
-        
+        transform.rotation = Quaternion.LookRotation(body.velocity); 
+
     }
     void FixedUpdate()
     {
