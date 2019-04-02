@@ -10,8 +10,8 @@ public class MouseScript : MonoBehaviour
     public float sensY = 15F; //Sensibilite en y
 
     //Maximum et min droit et gauche de la camera
-    public float minX = -180F; 
-    public float maxX = 180F;
+    public float minX = -360F; 
+    public float maxX = 360F;
 
     //Max et min de haut en bas
     public float minY = -60F; 
@@ -94,6 +94,18 @@ public class MouseScript : MonoBehaviour
     
    public static float ClampAngle (float angle,float min, float max)
     {
+        angle = angle % 360;
+        if ((angle >= -360F) && (angle <= 360F))
+        {
+            if (angle < -360F)
+            {
+                angle += 360F;
+            }
+            if (angle > 360F)
+            {
+                angle -= 360F;
+            }
+        }
         return Mathf.Clamp(angle, min, max);
     }
 }

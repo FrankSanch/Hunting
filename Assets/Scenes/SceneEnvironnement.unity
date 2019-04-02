@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -240,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bow: {fileID: 1058395600}
-  targetCountInitial: 5
+  remainingTargets: 5
   targetPrefab: {fileID: 6612517491287385242, guid: fb26e0ee1b4626549b5c131b306429d9,
     type: 3}
 --- !u!1 &422355057
@@ -1663,8 +1664,8 @@ MonoBehaviour:
   axes: 0
   sensX: 8
   sensY: 8
-  minX: -180
-  maxX: 180
+  minX: -360
+  maxX: 360
   minY: -60
   maxY: 60
   frameCounter: 20
@@ -1683,8 +1684,8 @@ MonoBehaviour:
   axes: 0
   sensX: 4
   sensY: 4
-  minX: -180
-  maxX: 180
+  minX: -360
+  maxX: 360
   minY: -60
   maxY: 60
   frameCounter: 20
