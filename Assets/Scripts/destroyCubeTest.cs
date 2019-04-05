@@ -10,7 +10,7 @@ public class destroyCubeTest : MonoBehaviour
    
 
     //S'execute quand la fleche touche a la cible
-    private void OnCollisionEnter(Collision collision)
+    public void man(Collision collision)
     {
    
         //Unity calcule la direction de la collision

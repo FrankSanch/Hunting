@@ -19,7 +19,7 @@ public class TargetSpawner : MonoBehaviour
     private List<GameObject> targets = new List<GameObject>();
     private List<float> mvtSpeeds = new List<float>();
 
-    private float targetScale = 1;
+    private float targetScale = 1.5f;
     public GameObject targetPrefab;
     
 
@@ -50,10 +50,11 @@ public class TargetSpawner : MonoBehaviour
             GameObject target = Instantiate<GameObject>(targetPrefab);
             //target.GetComponent<Collider>().isTrigger = true;
             target.transform.localPosition = spawn;
+            target.transform.position.y = (random.Next(0, 1));
             target.transform.localScale = new Vector3(targetScale, targetScale, targetScale);
             target.transform.LookAt(transform);
 
-            Checkspawn(target.transform);
+            //Checkspawn(target.transform);
 
             if (canMove)
             {
@@ -85,7 +86,7 @@ public class TargetSpawner : MonoBehaviour
     }
 
     //Verification de la position des cibles pour ne pas qu'elles se touchent
-    void Checkspawn(Transform target)
+    /*void Checkspawn(Transform target)
     {
         foreach (GameObject oldTarget in targets)
         {
@@ -95,7 +96,7 @@ public class TargetSpawner : MonoBehaviour
                 Checkspawn(target.transform);
             }
         }
-    }
+    }*/
 
     void Update()
     {
