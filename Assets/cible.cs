@@ -21,7 +21,7 @@ public class cible : MonoBehaviour
         if(collision.gameObject.tag=="Arrow")
         {
             destroyCubeTest destroyComponent = completeTarget.GetComponent<destroyCubeTest>();
-            destroyComponent.man(collision);
+            destroyComponent.OnCollisionOfChild(collision,int.Parse(this.name));
         }
        
     }

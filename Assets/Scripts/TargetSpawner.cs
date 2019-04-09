@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
-
+using UnityEngine.UI;
 public class TargetSpawner : MonoBehaviour
 {
     public GameObject bow;
@@ -19,10 +19,11 @@ public class TargetSpawner : MonoBehaviour
     private List<GameObject> targets = new List<GameObject>();
     private List<float> mvtSpeeds = new List<float>();
 
-    private float targetScale = 1.5f;
+    private float targetScale = 3f;
     public GameObject targetPrefab;
-    
 
+    public int totalScore = 0;
+    public TMPro.TMP_Text scoreText;
     private Random random;
 
     //distance maximal et minimal pour faire apparaître les cibles
@@ -116,6 +117,8 @@ public class TargetSpawner : MonoBehaviour
         }
         foreach (GameObject target in targetsHit)
         {
+            destroyCubeTest destroyCubeTestComponent = target.GetComponent<destroyCubeTest>();
+            totalScore += destroyCubeTestComponent.returnedScore;
             targets.Remove(target);
             Destroy(target);
             Shoot shootComponent = bow.GetComponent<Shoot>();
@@ -130,6 +133,6 @@ public class TargetSpawner : MonoBehaviour
         if(targetCount == 0)
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
 
-
+        scoreText.SetText("SCORE : " + totalScore.ToString());
     }
 }

@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class destroyCubeTest : MonoBehaviour
 {
     
     private IEnumerator coroutine;//S'execute en paralele
     public float force = 3000.0f;//La force de l'impact
-   
+    public int returnedScore;
 
     //S'execute quand la fleche touche a la cible
-    public void man(Collision collision)
+    public void OnCollisionOfChild(Collision collision,int score)
     {
-   
+        returnedScore = score;
+
         //Unity calcule la direction de la collision
         Vector3 dir = collision.contacts[0].point - transform.position;
           
@@ -30,7 +32,8 @@ public class destroyCubeTest : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
 
             coroutine = cubeCollision(3);
-            StartCoroutine(coroutine);      
+            StartCoroutine(coroutine);
+            
             
         }
     }
