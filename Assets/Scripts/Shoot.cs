@@ -23,9 +23,12 @@ public class Shoot : MonoBehaviour
 
     public Slider mainSlider;
 
+    public GameObject windArrows;
+
     void Start()
     {
         changeWind();
+        windArrows.transform.localRotation = Quaternion.Euler(windVelocity.x, windVelocity.y, windVelocity.z);
     }
 
     void Update()
@@ -55,6 +58,7 @@ public class Shoot : MonoBehaviour
                 shootPower = 3f;
                 timer = 0f;
                 mainSlider.value = shootPower;
+
             }
 
         }
