@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -229,6 +229,8 @@ MonoBehaviour:
   remainingTargets: 5
   targetPrefab: {fileID: 5434638334254334813, guid: 07b60dbaf053d5449b4f507a3e42f400,
     type: 3}
+  totalScore: 0
+  scoreText: {fileID: 858710643}
 --- !u!1 &422355057
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,9 +907,9 @@ MonoBehaviour:
   arrowPrefab: {fileID: 6292235554970313483, guid: 4594c6292f6ece640833b0943a12c8f6,
     type: 3}
   arrowspawn: {fileID: 290209152}
-  yolo: {fileID: 0}
   windVelocity: {x: 0, y: 0, z: 0}
   mainSlider: {fileID: 1874246128}
+  windArrows: {fileID: 0}
 --- !u!1 &1063693755
 GameObject:
   m_ObjectHideFlags: 0
