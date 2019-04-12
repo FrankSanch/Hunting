@@ -9,7 +9,6 @@ public class Shoot : MonoBehaviour
     public Camera cam;
     public GameObject arrowPrefab;
     public Transform arrowspawn;
-    public arrow yolo;
 
     private float shootPower = 3f;
     private float shootTime = 1f;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
-
+using UnityEngine.UI;
 public class TargetSpawner : MonoBehaviour
 {
     public GameObject bow;
@@ -19,10 +19,11 @@ public class TargetSpawner : MonoBehaviour
     private List<GameObject> targets = new List<GameObject>();
     private List<float> mvtSpeeds = new List<float>();
 
-    private float targetScale = 1;
+    private float targetScale = 3f;
     public GameObject targetPrefab;
-    
 
+    public int totalScore = 0;
+    public TMPro.TMP_Text scoreText;
     private Random random;
 
     //distance maximal et minimal pour faire apparaître les cibles
@@ -50,10 +51,11 @@ public class TargetSpawner : MonoBehaviour
             GameObject target = Instantiate<GameObject>(targetPrefab);
             //target.GetComponent<Collider>().isTrigger = true;
             target.transform.localPosition = spawn;
+            target.transform.localPosition = new Vector3(target.transform.position.x, random.Next(5,20), target.transform.position.z);
             target.transform.localScale = new Vector3(targetScale, targetScale, targetScale);
             target.transform.LookAt(transform);
 
-            Checkspawn(target.transform);
+            //Checkspawn(target.transform);
 
             if (canMove)
             {
@@ -85,7 +87,7 @@ public class TargetSpawner : MonoBehaviour
     }
 
     //Verification de la position des cibles pour ne pas qu'elles se touchent
-    void Checkspawn(Transform target)
+    /*void Checkspawn(Transform target)
     {
         foreach (GameObject oldTarget in targets)
         {
@@ -95,7 +97,7 @@ public class TargetSpawner : MonoBehaviour
                 Checkspawn(target.transform);
             }
         }
-    }
+    }*/
 
     void Update()
     {
@@ -115,6 +117,8 @@ public class TargetSpawner : MonoBehaviour
         }
         foreach (GameObject target in targetsHit)
         {
+            destroyCubeTest destroyCubeTestComponent = target.GetComponent<destroyCubeTest>();
+            totalScore += destroyCubeTestComponent.returnedScore;
             targets.Remove(target);
             Destroy(target);
             Shoot shootComponent = bow.GetComponent<Shoot>();
@@ -129,6 +133,6 @@ public class TargetSpawner : MonoBehaviour
         if(targetCount == 0)
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
 
-
+        scoreText.SetText("SCORE : " + totalScore.ToString());
     }
 }
