@@ -142,7 +142,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834260410195490025}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -162,8 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801811d109eb33f489bb29c4496a9358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countText: {fileID: 8674904564020374880, guid: 57e1d46976258464f8322f1ec7669edf,
-    type: 3}
 --- !u!65 &1834260410195391055
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -23,11 +23,18 @@ public class Shoot : MonoBehaviour
     public Slider mainSlider;
 
     public GameObject windArrows;
+    public float angleWind;
+    public float vectorWind;
+
 
     void Start()
     {
         changeWind();
-        windArrows.transform.localRotation = Quaternion.Euler(windVelocity.x, windVelocity.y, windVelocity.z);
+
+        //vectorwind = Mathf.Sqrt(Mathf.Pow(windVelocity.x, 2f) + Mathf.Pow(windVelocity.z, 2f));
+
+        angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
+        windArrows.transform.rotation = Quaternion.Euler(0, angleWind, 0);
     }
 
     void Update()
@@ -57,10 +64,23 @@ public class Shoot : MonoBehaviour
                 shootPower = 3f;
                 timer = 0f;
                 mainSlider.value = shootPower;
-
+                
             }
 
         }
+
+        windArrows.transform.localRotation = Quaternion.Euler(0, angleWind - transform.root.rotation.eulerAngles.y, 0);
+
+        /*
+        if(transform.root.rotation.eulerAngles.y > 0)
+        {
+            windArrows.transform.localRotation = Quaternion.Euler(0,vectorVent + transform.root.rotation.eulerAngles.y, 0);
+        }
+        if (transform.root.rotation.eulerAngles.y < 0)
+        {
+            windArrows.transform.localRotation = Quaternion.Euler(0,vectorVent +transform.root.rotation.eulerAngles.y, 0);
+        }*/
+
 
     }
     public void changeWind()
