@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = false;
         GameData.targetMobileOn = false;
+        GameData.enemyOn = true;
     }
 
     public void StartNormalModeMobile()
@@ -25,6 +26,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = false;
         GameData.targetMobileOn = false;
+        GameData.timerMarathon = true;
     }
 
     public void StartHuntMode()
@@ -32,6 +34,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = true;
         GameData.targetMobileOn = true;
+        GameData.enemyOn = true;
     }
 
     public void QuitGame()
