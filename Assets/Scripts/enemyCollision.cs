@@ -19,14 +19,14 @@ public class enemyCollision : MonoBehaviour
             //La flèche colle au cube 
             collision.gameObject.transform.SetParent(this.transform, true);
 
-            coroutine = cubeCollision(3);
+            coroutine = enemyHit(2);
             StartCoroutine(coroutine);
 
         }
     }
 
     //La fonction qui fait attendre un certain nombre de temps
-    private IEnumerator cubeCollision(int time)
+    private IEnumerator enemyHit(int time)
     {
         yield return new WaitForSeconds(time);
         //On desactive le gameObject

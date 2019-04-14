@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
+using UnityEngine.SceneManagement;
 
 public class enemySpawner : MonoBehaviour
 {
 
     private List<GameObject> enemies = new List<GameObject>();
-    
-   
+
+    private IEnumerator coroutine;
 
     private bool enableEnemies = GameData.enemyOn;
 
@@ -45,13 +46,12 @@ public class enemySpawner : MonoBehaviour
         if (enableEnemies)
         {
             List<GameObject> enemiesKilled = new List<GameObject>();
-            for (int i = 0; i < enemiesPerWave; i++)
+            foreach (GameObject enemy in enemies)
             {
-                if (!enemies[i].activeSelf)
+                if (!enemy.activeSelf)
                 {
-                    enemiesKilled.Add(enemies[i]);
+                    enemiesKilled.Add(enemy);
                 }
-
             }
 
             foreach (GameObject enemy in enemiesKilled)
@@ -64,6 +64,8 @@ public class enemySpawner : MonoBehaviour
             {
                 enemiesPerWave++;
                 numberOfWaves--;
+                enemiesKilled.Clear();
+                enemies.Clear();
                 SpawnEnemies(enemiesPerWave);
             }
 
@@ -76,7 +78,7 @@ public class enemySpawner : MonoBehaviour
     {
         //On crée une vecteur de direction avec un angle random (entre 0 et 360deg) autour du joueur
         Vector3 direction = transform.forward;
-        direction = Quaternion.AngleAxis(random.Next(0, 360), Vector3.up) * direction;
+        direction = Quaternion.AngleAxis(random.Next(0, random.Next(0, random.Next(0,360))), Vector3.up) * direction;
 
         //On crée une raie qui part du joueur vers la direction crée précédemment
         Ray ray = new Ray(transform.position, direction);
@@ -101,6 +103,9 @@ public class enemySpawner : MonoBehaviour
 
             enemies.Add(enemy);
             enemyWave++;
+
+            coroutine = enemySpawnTime(10, enemy);
+            StartCoroutine(coroutine);
         }
 
     }
@@ -109,12 +114,20 @@ public class enemySpawner : MonoBehaviour
     {
         foreach (GameObject badEnemy in enemies)
         {
-            if (Vector3.Distance(enemy.localPosition, badEnemy.transform.position) < enemyScale)
+            if (Vector3.Distance(enemy.localPosition, badEnemy.transform.position) < 5)
             {
                 enemy.localPosition = CreateSpawn();
                 Checkspawn(enemy.transform);
             }
         }
+    }
+
+    private IEnumerator enemySpawnTime(int time, GameObject enemy)
+    {
+        yield return new WaitForSeconds(time);
+
+       // if (enemy)
+        //SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 
 }
