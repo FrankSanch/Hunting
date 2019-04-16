@@ -27,13 +27,13 @@ public class destroyCubeTest : MonoBehaviour
         //Verifier si la target est bel et bien touche par une fleche et non par le sol
        if(collision.gameObject.name == "arrow")
         {
+            Debug.Log("allo");
             //La flèche colle au cube 
             collision.gameObject.transform.SetParent(this.transform, true);
             collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
 
             coroutine = cubeCollision(3);
             StartCoroutine(coroutine);
-            
             
         }
     }
