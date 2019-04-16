@@ -25,23 +25,31 @@ public class Shoot : MonoBehaviour
     public GameObject windArrows;
     public float angleWind;
     public float vectorWind;
+    public int localAmmo;
+
+    public TMPro.TMP_Text arrowText;
 
 
     void Start()
     {
         changeWind();
 
-
         //vectorwind = Mathf.Sqrt(Mathf.Pow(windVelocity.x, 2f) + Mathf.Pow(windVelocity.z, 2f));
 
         angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
         windArrows.transform.rotation = Quaternion.Euler(0, angleWind, 0);
-
+        localAmmo = GameData.ammoArrow;
+        arrowText.SetText("Arrows x" + localAmmo.ToString());
     }
 
     void Update()
     {
         timer += Time.deltaTime;
+        if(localAmmo==0)
+        {
+            Debug.Log("J'AI PU DE FLÈCHE");
+            localAmmo--;
+        }
         if (timer >= shootTime)
         {
             if (Input.GetMouseButton(0) && shootPower <= 60)
@@ -66,7 +74,9 @@ public class Shoot : MonoBehaviour
                 shootPower = 3f;
                 timer = 0f;
                 mainSlider.value = shootPower;
-                
+                localAmmo--;
+                arrowText.SetText("Arrows x" + localAmmo.ToString());
+
             }
 
         }

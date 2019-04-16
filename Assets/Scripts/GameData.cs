@@ -8,7 +8,9 @@ public class GameData : MonoBehaviour
     public static bool targetMobileOn = false;
     public static bool enemyOn = false;
     public static bool timerMarathon = false;
-    
+    public static int ammoArrow = 0;
+    public static string level = "Level";
+
 
     private void Awake()
     {
