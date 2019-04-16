@@ -54,7 +54,7 @@ public class TargetSpawner : MonoBehaviour
             GameObject target = Instantiate<GameObject>(targetPrefab);
             //target.GetComponent<Collider>().isTrigger = true;
             target.transform.localPosition = spawn;
-            target.transform.localPosition = new Vector3(target.transform.position.x, random.Next(5,20), target.transform.position.z);
+            target.transform.localPosition = new Vector3(target.transform.position.x, random.Next(6,20), target.transform.position.z);
             target.transform.localScale = new Vector3(targetScale, targetScale, targetScale);
             target.transform.LookAt(transform);
 
