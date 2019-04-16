@@ -88,6 +88,7 @@ public class Shoot : MonoBehaviour
     public void changeWind()
     {
         windVelocity = new Vector3(random.Next(minWindVelocity, maxWindVelocity), 0, random.Next(minWindVelocity, maxWindVelocity)) * 0.01f;
+        angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
     }
 
 }
