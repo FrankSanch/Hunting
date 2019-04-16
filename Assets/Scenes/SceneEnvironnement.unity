@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -270,6 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 290209152}
   - component: {fileID: 290209153}
+  - component: {fileID: 290209154}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -284,7 +285,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290209151}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -309,7 +310,23 @@ MonoBehaviour:
   targetPrefab: {fileID: 5434638334254334813, guid: 07b60dbaf053d5449b4f507a3e42f400,
     type: 3}
   totalScore: 0
-  scoreText: {fileID: 858710643}
+--- !u!114 &290209154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290209151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c602bf214ceb04ab61279098f7a4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1162472535145169336, guid: 3427dd813df20fa4fb2101e9cc9d9d1d,
+    type: 3}
+  enemyScale: 3
+  enemyWave: 0
+  numberOfWaves: 3
 --- !u!1 &422355057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,11 +2428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd07a34ea4ab754095b0557691835aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 0
-  sensX: 8
-  sensY: 8
   minX: -360
   maxX: 360
+  sensX: 8
+  sensY: 8
   minY: -60
   maxY: 60
   frameCounter: 20
@@ -2431,11 +2447,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd07a34ea4ab754095b0557691835aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 0
-  sensX: 4
-  sensY: 4
   minX: -360
   maxX: 360
+  sensX: 4
+  sensY: 4
   minY: -60
   maxY: 60
   frameCounter: 20

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class MouseScript : MonoBehaviour
 {
-    public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 } //list de variable pour choisir on tourne sur quel axe
-    public RotationAxes axes = RotationAxes.MouseXAndY; // On met la rotation pour dans les 2 axes
+   
+    
+    //Maximum et min droit et gauche de la camera
+    public float minX = -360F; 
+    public float maxX = 360;
+
     public float sensX = 15F; //Sensibilite en x
     public float sensY = 15F; //Sensibilite en y
 
-    //Maximum et min droit et gauche de la camera
-    public float minX = -360F; 
-    public float maxX = 360F;
 
     //Max et min de haut en bas
     public float minY = -60F; 
@@ -24,24 +25,37 @@ public class MouseScript : MonoBehaviour
     //Les valeurs de rotX et rotY seront ajoute a ces list 
     //Aussi on initialise les moyennes de rotation a 0
     private List<float> rotArrayX = new List<float>();
-    float rotAverageX = 0F;
+    float rotMoyenneX = 0F;
 
     private List<float> rotArrayY = new List<float>();
-    float rotAverageY = 0F;
+    float rotMoyenneY = 0F;
 
     //Limite a 20 le nombre de valeurs de rotX et rotY qui peuvent etre mit dans les rotArray
     public float frameCounter = 20;
 
-    //Cest dure a comprendre mais cest avec Quaternion que tout les rotation seront applique
+    //Cest dure a comprendre mais cest avec Quaternion que tout les rotation seront applique, On le set dans start
     Quaternion originalRotation;
 
-    void Update()
-    {
-        if (axes == RotationAxes.MouseXAndY)
-        {
-          
 
-            //Get l'input de la souris
+    void Start()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (rb)
+        {
+            rb.freezeRotation = true;
+        }
+
+        originalRotation = transform.localRotation;
+    }
+
+    void LateUpdate()
+    {
+        //On reset les rotation a chaque frame donc c'est pratiquement impossible de se rendre a 360 ou -360
+        rotMoyenneX = 0;
+        rotMoyenneY = 0;
+      
+            //Get l'input de la souris mais smooth
             rotY += Input.GetAxis("Mouse Y") * sensY;
             rotX += Input.GetAxis("Mouse X") * sensX;
 
@@ -59,53 +73,39 @@ public class MouseScript : MonoBehaviour
              // On ajoute toutes les rotations avant de faire leur moyenne en x et y
             for (int j = 0; j < rotArrayY.Count; j++)
             {
-                rotAverageY += rotArrayY[j];
+                rotMoyenneY += rotArrayY[j];
             }
             for (int i = 0; i < rotArrayX.Count; i++)
             {
-                rotAverageX += rotArrayX[i];
+                rotMoyenneX += rotArrayX[i];
             }
 
             //calcul de la moyenne
-            rotAverageY /= rotArrayY.Count;
-            rotAverageX /= rotArrayX.Count;
+            rotMoyenneY /= rotArrayY.Count;
+            rotMoyenneX /= rotArrayX.Count;
 
-            rotAverageY = ClampAngle(rotAverageY, minY, maxY);
-            rotAverageX = ClampAngle(rotAverageX, minX, maxX);
+            rotMoyenneY = View(rotMoyenneY, minY, maxY);
+            rotMoyenneX = View(rotMoyenneX, minX, maxX);
 
             //Ca tourne
-            Quaternion yQuaternion = Quaternion.AngleAxis(rotAverageY, Vector3.left);
-            Quaternion xQuaternion = Quaternion.AngleAxis(rotAverageX, Vector3.up);
+            Quaternion yQuaternion = Quaternion.AngleAxis(rotMoyenneY, Vector3.left);
+            Quaternion xQuaternion = Quaternion.AngleAxis(rotMoyenneX, Vector3.up);
 
             transform.localRotation = originalRotation * xQuaternion * yQuaternion;
-        }
-        
+       
     }
 
-    void Start()
-    {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb)
-            rb.freezeRotation = true;
-        originalRotation = transform.localRotation;
-    }
+   
 
-        
-    
-   public static float ClampAngle (float angle,float min, float max)
+
+
+     float View(float rotation, float min, float max)
     {
-        angle = angle % 360;
-        if ((angle >= -360F) && (angle <= 360F))
-        {
-            if (angle < -360F)
-            {
-                angle += 360F;
-            }
-            if (angle > 360F)
-            {
-                angle -= 360F;
-            }
-        }
-        return Mathf.Clamp(angle, min, max);
+        rotation = rotation % 360;
+
+        if (rotation >= 360 || rotation <= -360)
+            rotation = 0;
+
+        return Mathf.Clamp(rotation, min, max);
     }
 }
