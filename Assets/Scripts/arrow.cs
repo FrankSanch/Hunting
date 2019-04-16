@@ -59,4 +59,8 @@ public class arrow : MonoBehaviour
         wind.y = y;
         wind.z = z;
     }
+    public Vector3 getWindVector()
+    {
+        return wind;
+    }
 }

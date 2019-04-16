@@ -26,6 +26,8 @@ public class Shoot : MonoBehaviour
     public float angleWind;
     public float vectorWind;
 
+    float angleBetweenWindArrow = 0f;
+    float surfaceOfContact = 0f;
 
     void Start()
     {
@@ -41,6 +43,7 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+
         timer += Time.deltaTime;
         if (timer >= shootTime)
         {
@@ -60,6 +63,12 @@ public class Shoot : MonoBehaviour
                 Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
                 arrow arrowComponent = arrowClone.GetComponent<arrow>();
                 arrowClone.name = "arrow";
+                Vector2 HorizontalWind = new Vector2(windVelocity.x,windVelocity.z);
+                Vector2 HorizontalArrow = new Vector2(cam.transform.forward.x, cam.transform.forward.z);
+
+                angleBetweenWindArrow =Vector2.Angle(HorizontalWind, HorizontalArrow);
+                surfaceOfContact = 0.0091281f * 0.70f * Mathf.Sin(angleBetweenWindArrow);
+
                 arrowComponent.setVector(windVelocity.x, windVelocity.y, windVelocity.z);
                 rigidbodycomponent.velocity = cam.transform.forward * shootPower;
 
