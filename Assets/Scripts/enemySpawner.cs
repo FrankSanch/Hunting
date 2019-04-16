@@ -20,13 +20,15 @@ public class enemySpawner : MonoBehaviour
     public float enemyScale = 3f;
 
     public int enemyWave = 0;
-    public int numberOfWaves = 3;
+    public int numberOfWaves = 0;
     private int enemiesPerWave = 1;
+
+    public float timePerWave = 15;
 
 
 
     //distance maximal et minimal pour faire apparaître les enemies
-    private int maxDistance = 20;
+    private int maxDistance = 18;
     private int minDistance = 10;
 
     void Start()
@@ -60,16 +62,15 @@ public class enemySpawner : MonoBehaviour
                enemyWave--;
             }
 
-            if (enemyWave == 0)
+            if (enemyWave == 0 && numberOfWaves < 4)
             {
                 enemiesPerWave++;
-                numberOfWaves--;
+                numberOfWaves++;
                 enemiesKilled.Clear();
                 enemies.Clear();
                 SpawnEnemies(enemiesPerWave);
             }
-
-          
+     
         }
         
     }
@@ -104,7 +105,8 @@ public class enemySpawner : MonoBehaviour
             enemies.Add(enemy);
             enemyWave++;
 
-            coroutine = enemySpawnTime(10, enemy);
+            timePerWave = timePerWave + (3 * enemiesPerWave);
+            coroutine = enemySpawnTime(timePerWave, enemy);
             StartCoroutine(coroutine);
         }
 
@@ -122,12 +124,15 @@ public class enemySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator enemySpawnTime(int time, GameObject enemy)
+    private IEnumerator enemySpawnTime(float time, GameObject enemy)
     {
         yield return new WaitForSeconds(time);
 
-       // if (enemy)
-        //SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        if (enemy.activeSelf)
+        {
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        }
+       
     }
 
 }

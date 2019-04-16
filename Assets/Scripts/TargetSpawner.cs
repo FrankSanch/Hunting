@@ -31,7 +31,7 @@ public class TargetSpawner : MonoBehaviour
     private int maxDistance = 60;
     private int minDistance = 30;
 
-    //vitesse maximal et minimal de pour la mouvement des cibles en deg/s
+    //vitesse maximal et minimal de pour la mouvement des cibles en deg
     private int maxSpeed = 20;
     private int minSpeed = 10;
 
