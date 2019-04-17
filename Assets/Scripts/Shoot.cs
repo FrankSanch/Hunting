@@ -29,6 +29,8 @@ public class Shoot : MonoBehaviour
 
     public TMPro.TMP_Text arrowText;
 
+    public Animator animator;
+
 
     void Start()
     {
@@ -40,6 +42,10 @@ public class Shoot : MonoBehaviour
         windArrows.transform.rotation = Quaternion.Euler(0, angleWind, 0);
         localAmmo = GameData.ammoArrow;
         arrowText.SetText("Arrows x" + localAmmo.ToString());
+
+        animator = GetComponent<Animator>();
+
+
     }
 
     void Update()
@@ -58,6 +64,15 @@ public class Shoot : MonoBehaviour
 
                 shootPower += shootPowerIncrease;
                 mainSlider.value = shootPower;
+                animator.SetFloat("Power", shootPower);
+                animator.SetBool("Shot", true);
+                //Debug.Log(shootPower.ToString());
+                if (shootPower > 60)
+                {
+                    animator.SetBool("Shot", false);
+                }
+
+
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -76,6 +91,10 @@ public class Shoot : MonoBehaviour
                 mainSlider.value = shootPower;
                 localAmmo--;
                 arrowText.SetText("Arrows x" + localAmmo.ToString());
+
+                animator.SetFloat("Power", shootPower-3);
+                animator.SetBool("Shot", false);
+                //Debug.Log("2");
 
             }
 
