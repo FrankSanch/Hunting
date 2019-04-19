@@ -20,13 +20,15 @@ public class MainMenu : MonoBehaviour
         GameData.targetMobileOn = true;
     }
 
-    //What the frick is this
+    
     public void StartMarathonMode()
     {
+        Debug.Log("wtf");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = false;
         GameData.targetMobileOn = false;
-        GameData.timerMarathon = true;
+        GameData.marathon = true;
+        GameData.arrowMissed = 0;
     }
 
     public void StartHuntMode()

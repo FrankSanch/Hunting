@@ -7,7 +7,8 @@ public class GameData : MonoBehaviour
     public static bool windOn = true;
     public static bool targetMobileOn = false;
     public static bool enemyOn = false;
-    public static bool timerMarathon = false;
+    public static bool marathon = false;
+    public static int arrowMissed;
     
 
     private void Awake()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class arrow : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class arrow : MonoBehaviour
     private float timer;
     private bool hitsomething = false;
     private Vector3 wind;
+
+    private IEnumerator coroutine;
 
     GameObject Gamedataboy;
     void Start()
@@ -45,8 +48,11 @@ public class arrow : MonoBehaviour
             hitsomething = true;
             Stick();
             timer = 0f;
+
         }
-        
+
+        coroutine = arrowFailTimer(2);
+        StartCoroutine(coroutine);
     }
 
     private void Stick()
@@ -58,5 +64,12 @@ public class arrow : MonoBehaviour
         wind.x = x;
         wind.y = y;
         wind.z = z;
+    }
+
+    private IEnumerator arrowFailTimer(int time)
+    {
+        yield return new WaitForSeconds(time);
+        if (GameData.marathon && GameData.arrowMissed == 3)
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
 }

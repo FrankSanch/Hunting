@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Shoot : MonoBehaviour
 {
@@ -26,12 +28,14 @@ public class Shoot : MonoBehaviour
     public float angleWind;
     public float vectorWind;
 
+    
+
 
     void Start()
     {
         changeWind();
 
-
+        GameData.arrowMissed = 0;
         //vectorwind = Mathf.Sqrt(Mathf.Pow(windVelocity.x, 2f) + Mathf.Pow(windVelocity.z, 2f));
 
         angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
@@ -54,7 +58,7 @@ public class Shoot : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-
+                Debug.Log("Shoot");
                 GameObject arrowClone = Instantiate(arrowPrefab, arrowspawn.position, Quaternion.identity);
 
                 Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
@@ -66,6 +70,12 @@ public class Shoot : MonoBehaviour
                 shootPower = 3f;
                 timer = 0f;
                 mainSlider.value = shootPower;
+
+                if (GameData.marathon)
+                {
+                    GameData.arrowMissed++;
+                    Debug.Log(GameData.arrowMissed);
+                }
                 
             }
 
@@ -83,6 +93,8 @@ public class Shoot : MonoBehaviour
             windArrows.transform.localRotation = Quaternion.Euler(0,vectorVent +transform.root.rotation.eulerAngles.y, 0);
         }*/
 
+
+        
 
     }
     public void changeWind()

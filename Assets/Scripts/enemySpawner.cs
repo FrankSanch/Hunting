@@ -26,7 +26,6 @@ public class enemySpawner : MonoBehaviour
     public float timePerWave = 15;
 
 
-
     //distance maximal et minimal pour faire apparaître les enemies
     private int maxDistance = 18;
     private int minDistance = 10;
@@ -62,7 +61,7 @@ public class enemySpawner : MonoBehaviour
                enemyWave--;
             }
 
-            if (enemyWave == 0 && numberOfWaves < 4)
+            if (enemyWave == 0)
             {
                 enemiesPerWave++;
                 numberOfWaves++;
@@ -105,7 +104,7 @@ public class enemySpawner : MonoBehaviour
             enemies.Add(enemy);
             enemyWave++;
 
-            timePerWave = timePerWave + (3 * enemiesPerWave);
+            timePerWave = timePerWave + (7 * enemiesPerWave);
             coroutine = enemySpawnTime(timePerWave, enemy);
             StartCoroutine(coroutine);
         }
