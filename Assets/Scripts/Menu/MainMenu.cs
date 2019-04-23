@@ -24,7 +24,6 @@ public class MainMenu : MonoBehaviour
         GameData.level = "Level: Mobile";
     }
 
-    //What the frick is this
     public void StartMarathonMode()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
