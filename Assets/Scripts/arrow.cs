@@ -15,10 +15,10 @@ public class arrow : MonoBehaviour
 
     private IEnumerator coroutine;
 
-    GameObject Gamedataboy;
+    
     void Start()
     {
-        Gamedataboy = GameObject.Find("Gamedata");
+       
         body = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.LookRotation(body.velocity); 
 
@@ -71,5 +71,15 @@ public class arrow : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (GameData.marathon && GameData.arrowMissed == 3)
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+        else if (GameData.statique && GameData.arrowMissed == 10)
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+        else if (GameData.mobile && GameData.arrowMissed == 10)
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+        else if (GameData.hunt && GameData.arrowMissed == 4)
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        
     }
 }

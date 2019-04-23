@@ -36,7 +36,16 @@ public class destroyCubeTest : MonoBehaviour
             {
                 Debug.Log("Target Hit");
                 GameData.arrowMissed = 0;
+                GameData.ammoArrow = 3;
             }
+
+            if (GameData.hunt)
+            {
+                GameData.arrowMissed = 0;
+                GameData.ammoArrow = 4;
+            }
+
+
 
             coroutine = cubeCollision(3);
             StartCoroutine(coroutine);

@@ -27,6 +27,11 @@ public class Shoot : MonoBehaviour
     public GameObject windArrows;
     public float angleWind;
     public float vectorWind;
+    
+
+    public TMPro.TMP_Text arrowText;
+
+    public Animator animator;
 
     
 
@@ -35,17 +40,25 @@ public class Shoot : MonoBehaviour
     {
         changeWind();
 
+
         GameData.arrowMissed = 0;
+
+
         //vectorwind = Mathf.Sqrt(Mathf.Pow(windVelocity.x, 2f) + Mathf.Pow(windVelocity.z, 2f));
 
         angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
         windArrows.transform.rotation = Quaternion.Euler(0, angleWind, 0);
+        
+        
+        animator = GetComponent<Animator>();
+
 
     }
 
     void Update()
     {
         timer += Time.deltaTime;
+        
         if (timer >= shootTime)
         {
             if (Input.GetMouseButton(0) && shootPower <= 60)
@@ -54,6 +67,15 @@ public class Shoot : MonoBehaviour
 
                 shootPower += shootPowerIncrease;
                 mainSlider.value = shootPower;
+                animator.SetFloat("Power", shootPower);
+                animator.SetBool("Shot", true);
+                //Debug.Log(shootPower.ToString());
+                if (shootPower > 60)
+                {
+                    animator.SetBool("Shot", false);
+                }
+
+
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -71,12 +93,21 @@ public class Shoot : MonoBehaviour
                 timer = 0f;
                 mainSlider.value = shootPower;
 
-                if (GameData.marathon)
-                {
-                    GameData.arrowMissed++;
-                    Debug.Log(GameData.arrowMissed);
-                }
+
+               
+                GameData.arrowMissed++;
+                GameData.ammoArrow--;
+                Debug.Log(GameData.arrowMissed);
                 
+                
+
+               
+
+                animator.SetFloat("Power", shootPower-3);
+                animator.SetBool("Shot", false);
+                //Debug.Log("2");
+
+
             }
 
         }
