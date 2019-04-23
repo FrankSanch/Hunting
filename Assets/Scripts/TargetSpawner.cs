@@ -24,7 +24,8 @@ public class TargetSpawner : MonoBehaviour
     public GameObject targetPrefab;
 
     public int totalScore = 0;
-   //public TMPro.TMP_Text scoreText;
+    public TMPro.TMP_Text scoreText;
+    public TMPro.TMP_Text levelText;
     private Random random;
 
     //distance maximal et minimal pour faire apparaître les cibles
@@ -41,6 +42,7 @@ public class TargetSpawner : MonoBehaviour
         random = new Random();
 
         SpawnTargets(1);
+        levelText.SetText(GameData.level);
     }
 
     void SpawnTargets(int count)
@@ -138,6 +140,6 @@ public class TargetSpawner : MonoBehaviour
         if(targetCount == 0)
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
 
-        //scoreText.SetText("SCORE : " + totalScore.ToString());
+        scoreText.SetText("Score : " + totalScore.ToString());
     }
 }

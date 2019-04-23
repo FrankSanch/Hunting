@@ -26,6 +26,11 @@ public class Shoot : MonoBehaviour
     public GameObject windArrows;
     public float angleWind;
     public float vectorWind;
+    public int localAmmo;
+
+    public TMPro.TMP_Text arrowText;
+
+    public Animator animator;
 
     float angleBetweenWindArrow = 0f;
     float surfaceOfContact = 0f;
@@ -34,11 +39,15 @@ public class Shoot : MonoBehaviour
     {
         changeWind();
 
-
         //vectorwind = Mathf.Sqrt(Mathf.Pow(windVelocity.x, 2f) + Mathf.Pow(windVelocity.z, 2f));
 
         angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
         windArrows.transform.rotation = Quaternion.Euler(0, angleWind, 0);
+        localAmmo = GameData.ammoArrow;
+        arrowText.SetText("Arrows x" + localAmmo.ToString());
+
+        animator = GetComponent<Animator>();
+
 
     }
 
@@ -46,6 +55,13 @@ public class Shoot : MonoBehaviour
     {
 
         timer = Time.time;
+
+        if(localAmmo==0)
+        {
+            Debug.Log("J'AI PU DE FLÈCHE");
+            localAmmo--;
+        }
+
         if (timer >= shootTime)
         {
             if(Input.GetMouseButtonDown(0))
@@ -58,6 +74,15 @@ public class Shoot : MonoBehaviour
 
                 shootPower = 60*((timer-timeStart)+0.1f);
                 mainSlider.value = shootPower;
+                animator.SetFloat("Power", shootPower);
+                animator.SetBool("Shot", true);
+                //Debug.Log(shootPower.ToString());
+                if (shootPower > 60)
+                {
+                    animator.SetBool("Shot", false);
+                }
+
+
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -80,7 +105,13 @@ public class Shoot : MonoBehaviour
                 shootPower = 3f;
                 timer = 0f;
                 mainSlider.value = shootPower;
-                
+                localAmmo--;
+                arrowText.SetText("Arrows x" + localAmmo.ToString());
+
+                animator.SetFloat("Power", shootPower-3);
+                animator.SetBool("Shot", false);
+                //Debug.Log("2");
+
             }
 
         }
