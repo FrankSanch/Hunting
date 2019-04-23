@@ -12,6 +12,7 @@ public class Shoot : MonoBehaviour
 
     private float shootPower = 3f;
     private float shootTime = 1f;
+    private float timeStart = 0f;
     private float timer;
     private const float shootPowerIncrease = 0.5f;
 
@@ -44,14 +45,18 @@ public class Shoot : MonoBehaviour
     void Update()
     {
 
-        timer += Time.deltaTime;
+        timer = Time.time;
         if (timer >= shootTime)
         {
-            if (Input.GetMouseButton(0) && shootPower <= 60)
+            if(Input.GetMouseButtonDown(0))
             {
+                timeStart = Time.time;
+            }
+            if (Input.GetMouseButton(0) && timer-timeStart <= 1)
+            {
+                
 
-
-                shootPower += shootPowerIncrease;
+                shootPower = 60*((timer-timeStart)+0.1f);
                 mainSlider.value = shootPower;
             }
 
