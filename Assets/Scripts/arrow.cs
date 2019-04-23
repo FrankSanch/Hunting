@@ -12,10 +12,8 @@ public class arrow : MonoBehaviour
     private bool hitsomething = false;
     private Vector3 wind;
 
-    GameObject Gamedataboy;
     void Start()
     {
-        Gamedataboy = GameObject.Find("Gamedata");
         body = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.LookRotation(body.velocity); 
 
@@ -58,5 +56,9 @@ public class arrow : MonoBehaviour
         wind.x = x;
         wind.y = y;
         wind.z = z;
+    }
+    public Vector3 getWindVector()
+    {
+        return wind;
     }
 }

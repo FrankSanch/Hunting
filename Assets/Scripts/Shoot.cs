@@ -12,6 +12,7 @@ public class Shoot : MonoBehaviour
 
     private float shootPower = 3f;
     private float shootTime = 1f;
+    private float timeStart = 0f;
     private float timer;
     private const float shootPowerIncrease = 0.5f;
 
@@ -31,6 +32,8 @@ public class Shoot : MonoBehaviour
 
     public Animator animator;
 
+    float angleBetweenWindArrow = 0f;
+    float surfaceOfContact = 0f;
 
     void Start()
     {
@@ -50,23 +53,30 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
+
+        timer = Time.time;
+
         if(localAmmo==0)
         {
             Debug.Log("J'AI PU DE FLÈCHE");
             localAmmo--;
         }
+
         if (timer >= shootTime)
         {
-            if (Input.GetMouseButton(0) && shootPower <= 60)
+            if(Input.GetMouseButtonDown(0))
             {
+                timeStart = Time.time;
+            }
+            if (Input.GetMouseButton(0) && timer-timeStart <= 1)
+            {
+                
 
-
-                shootPower += shootPowerIncrease;
+                shootPower = 60*((timer-timeStart)+0.1f);
                 mainSlider.value = shootPower;
                 animator.SetFloat("Power", shootPower);
                 animator.SetBool("Shot", true);
-                //Debug.Log(shootPower.ToString());
+                Debug.Log(shootPower.ToString());
                 if (shootPower > 60)
                 {
                     animator.SetBool("Shot", false);
@@ -83,6 +93,12 @@ public class Shoot : MonoBehaviour
                 Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
                 arrow arrowComponent = arrowClone.GetComponent<arrow>();
                 arrowClone.name = "arrow";
+                Vector2 HorizontalWind = new Vector2(windVelocity.x,windVelocity.z);
+                Vector2 HorizontalArrow = new Vector2(cam.transform.forward.x, cam.transform.forward.z);
+
+                angleBetweenWindArrow =Vector2.Angle(HorizontalWind, HorizontalArrow);
+                surfaceOfContact = 0.0091281f * 0.70f * Mathf.Sin(angleBetweenWindArrow);
+
                 arrowComponent.setVector(windVelocity.x, windVelocity.y, windVelocity.z);
                 rigidbodycomponent.velocity = cam.transform.forward * shootPower;
 
