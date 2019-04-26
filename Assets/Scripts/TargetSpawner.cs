@@ -129,7 +129,7 @@ public class TargetSpawner : MonoBehaviour
             Destroy(target);
 
             Shoot shootComponent = bow.GetComponent<Shoot>();
-            shootComponent.changeWind();
+            shootComponent.ChangeWind();
             targetCount--;
         }
         if(remainingTargets > 0 && targetCount < 1)
