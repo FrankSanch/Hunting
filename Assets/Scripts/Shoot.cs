@@ -30,6 +30,7 @@ public class Shoot : MonoBehaviour
     public int localAmmo;
 
     public TMPro.TMP_Text arrowText;
+    public TMPro.TMP_Text windspeedText;
 
     public Animator animator;
 
@@ -52,7 +53,8 @@ public class Shoot : MonoBehaviour
         angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
         windArrows.transform.rotation = Quaternion.Euler(0, angleWind, 0);
         localAmmo = GameData.ammoArrow;
-        arrowText.SetText("Arrows x" + windSpeed.ToString());
+        arrowText.SetText("Arrows x" + GameData.ammoArrow.ToString());
+        windspeedText.SetText((windSpeed*3.6).ToString("0") + "Km/h");
 
         animator = GetComponent<Animator>();
 
@@ -64,7 +66,8 @@ public class Shoot : MonoBehaviour
         
         timer = Time.time;
         timeInterval += Time.deltaTime;
-        if(localAmmo==0)
+        windspeedText.SetText((windSpeed * 3.6).ToString("0") + "Km/h");
+        if (localAmmo==0)
         {
             Debug.Log("J'AI PU DE FLÈCHE");
             localAmmo--;
@@ -119,6 +122,7 @@ public class Shoot : MonoBehaviour
                 mainSlider.value = shootPower;
                 localAmmo--;
                 arrowText.SetText("Arrows x"+ localAmmo.ToString());
+                
 
                 animator.SetFloat("Power", shootPower-3);
                 animator.SetBool("Shot", false);
