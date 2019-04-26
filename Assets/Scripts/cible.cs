@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cible : MonoBehaviour
+public class cible : MonoBehaviour
 {
+    public GameObject completeTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,11 @@ public class Cible : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if(collision.gameObject.tag=="Arrow")
+        {
+            destroyCubeTest destroyComponent = completeTarget.GetComponent<destroyCubeTest>();
+            destroyComponent.OnCollisionOfChild(collision,int.Parse(this.name));
+        }
+       
     }
 }

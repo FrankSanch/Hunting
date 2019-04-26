@@ -76,7 +76,7 @@ public class Shoot : MonoBehaviour
                 mainSlider.value = shootPower;
                 animator.SetFloat("Power", shootPower);
                 animator.SetBool("Shot", true);
-                Debug.Log(shootPower.ToString());
+                //Debug.Log(shootPower.ToString());
                 if (shootPower > 60)
                 {
                     animator.SetBool("Shot", false);
