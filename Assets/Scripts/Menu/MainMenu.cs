@@ -28,10 +28,10 @@ public class MainMenu : MonoBehaviour
         GameData.mobile = true;
     }
 
-    
+
     public void StartMarathonMode()
     {
-        Debug.Log("wtf");
+        //Debug.Log("wtf");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = false;
         GameData.targetMobileOn = false;

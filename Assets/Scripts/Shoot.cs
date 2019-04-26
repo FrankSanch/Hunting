@@ -79,7 +79,7 @@ public class Shoot : MonoBehaviour
                 mainSlider.value = shootPower;
                 animator.SetFloat("Power", shootPower);
                 animator.SetBool("Shot", true);
-                Debug.Log(shootPower.ToString());
+                //Debug.Log(shootPower.ToString());
                 if (shootPower > 60)
                 {
                     animator.SetBool("Shot", false);
@@ -102,13 +102,14 @@ public class Shoot : MonoBehaviour
                 angleBetweenWindArrow =Vector2.Angle(HorizontalWind, HorizontalArrow);
                 surfaceOfContact = 0.0091281f * 0.70f * Mathf.Sin(angleBetweenWindArrow);
 
-                arrowComponent.setVector(windVelocity.x, windVelocity.y, windVelocity.z);
+               
                 rigidbodycomponent.velocity = cam.transform.forward * shootPower;
 
                 shootPower = 3f;
                 timer = 0f;
                 mainSlider.value = shootPower;
 
+                arrowComponent.setWindVector(windVelocity.x, windVelocity.y, windVelocity.z,shootPower);
 
                
                 GameData.arrowMissed++;
