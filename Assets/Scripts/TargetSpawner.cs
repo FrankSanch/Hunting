@@ -86,7 +86,7 @@ public class TargetSpawner : MonoBehaviour
         //On crée une raie qui part du joueur bers la direction crée précédemment
         Ray ray = new Ray(transform.position, direction);
         //On choisit un point au hasard (entre minRadius et maxRadius) sur cette raie pour y faire spawner la cible
-        return ray.GetPoint(random.Next(minDistance, maxDistance));
+        return ray.GetPoint(random.Next(maxDistance, maxDistance));
     }
 
     //Verification de la position des cibles pour ne pas qu'elles se touchent
