@@ -149,7 +149,7 @@ public class enemySpawner : MonoBehaviour
 
     private IEnumerator enemySpawnTime(float time, GameObject enemy)
     {
-        Debug.Log(time);
+        Debug.Log("ime");
        
 
 

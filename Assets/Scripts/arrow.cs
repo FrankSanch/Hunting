@@ -13,12 +13,14 @@ public class arrow : MonoBehaviour
     private bool hitsomething = false;
     private Vector3 wind;
 
+
     private IEnumerator coroutine;
 
-    
+  
+
     void Start()
     {
-       
+
         body = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.LookRotation(body.velocity); 
 
@@ -66,6 +68,7 @@ public class arrow : MonoBehaviour
         wind.z = z;
     }
 
+
     private IEnumerator arrowFailTimer(int time)
     {
         yield return new WaitForSeconds(time);
@@ -80,6 +83,11 @@ public class arrow : MonoBehaviour
 
         else if (GameData.hunt && GameData.arrowMissed == 4)
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
-        
+    }
+
+    public Vector3 getWindVector()
+    {
+        return wind;
+
     }
 }
