@@ -29,7 +29,7 @@ public class TargetSpawner : MonoBehaviour
     private Random random;
 
     //distance maximal et minimal pour faire apparaître les cibles
-    private int maxDistance = 60;
+    private int maxDistance = 70;
     private int minDistance = 30;
 
     //vitesse maximal et minimal de pour la mouvement des cibles en deg/s
@@ -86,7 +86,7 @@ public class TargetSpawner : MonoBehaviour
         //On crée une raie qui part du joueur bers la direction crée précédemment
         Ray ray = new Ray(transform.position, direction);
         //On choisit un point au hasard (entre minRadius et maxRadius) sur cette raie pour y faire spawner la cible
-        return ray.GetPoint(random.Next(maxDistance, maxDistance));
+        return ray.GetPoint(random.Next(minDistance, maxDistance));
     }
 
     //Verification de la position des cibles pour ne pas qu'elles se touchent
