@@ -8,11 +8,11 @@ public class enemyCollision : MonoBehaviour
     public float force = 3000.0f;//La force de l'impact
     
 
-    //S'execute quand la fleche touche a la cible
+   
     public void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Reee");
-        //Verifier si la target est bel et bien touche par une fleche et non par le sol
+        
         if (collision.gameObject.name == "arrow")
         {
             Debug.Log("allo");

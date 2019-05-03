@@ -11,8 +11,10 @@ public class MainMenu : MonoBehaviour
         GameData.windOn = false;
         GameData.targetMobileOn = false;
         GameData.enemyOn = true;
-        GameData.ammoArrow = 1;
+        GameData.ammoArrow = 10;
         GameData.level = "Level: Statique";
+        GameData.statique = true;
+        GameData.arrowMissed = 0;
     }
 
     public void StartNormalModeMobile()
@@ -20,19 +22,26 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = false;
         GameData.targetMobileOn = true;
-        GameData.ammoArrow = 2;
+        GameData.ammoArrow = 10;
         GameData.level = "Level: Mobile";
+        GameData.arrowMissed = 0;
+        GameData.mobile = true;
     }
 
-    //What the frick is this
+
     public void StartMarathonMode()
     {
+        //Debug.Log("wtf");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = false;
         GameData.targetMobileOn = false;
+        GameData.marathon = true;
+        GameData.arrowMissed = 0;
+
         GameData.timerMarathon = true;
         GameData.ammoArrow = 3;
         GameData.level = "Level: Marathon";
+
     }
 
     public void StartHuntMode()
@@ -43,6 +52,8 @@ public class MainMenu : MonoBehaviour
         GameData.enemyOn = true;
         GameData.ammoArrow = 4;
         GameData.level = "Level: Hunt";
+        GameData.hunt = true;
+        GameData.arrowMissed = 0;
     }
 
     public void QuitGame()

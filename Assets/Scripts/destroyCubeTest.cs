@@ -32,6 +32,21 @@ public class destroyCubeTest : MonoBehaviour
             collision.gameObject.transform.SetParent(this.transform, true);
             collision.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
 
+            if (GameData.marathon)
+            {
+                Debug.Log("Target Hit");
+                GameData.arrowMissed = 0;
+                GameData.ammoArrow = 3;
+            }
+
+            if (GameData.hunt)
+            {
+                GameData.arrowMissed = 0;
+                GameData.ammoArrow = 4;
+            }
+
+
+
             coroutine = cubeCollision(3);
             StartCoroutine(coroutine);
             
