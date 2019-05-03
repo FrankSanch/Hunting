@@ -7,12 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: enemyBinLaden
+  m_Name: EnnemiSkin
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -38,11 +38,11 @@ Material:
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: -26.77, y: 0}
+        m_Offset: {x: 0.42, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9ecccf5b68e1dc64daeacc48fb1de2a9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 31b7af2a836782f4d87c3372a741667c, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: -26.77, y: 0}
+        m_Offset: {x: 0.42, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}

@@ -32,12 +32,13 @@ public class TargetSpawner : MonoBehaviour
     private int maxDistance = 60;
     private int minDistance = 30;
 
-    //vitesse maximal et minimal de pour la mouvement des cibles en deg/s
+    //vitesse maximal et minimal de pour la mouvement des cibles en deg
     private int maxSpeed = 20;
     private int minSpeed = 10;
 
     void Start()
     {
+      
         canMove = GameData.targetMobileOn;
         random = new Random();
 
@@ -54,7 +55,7 @@ public class TargetSpawner : MonoBehaviour
             GameObject target = Instantiate<GameObject>(targetPrefab);
             //target.GetComponent<Collider>().isTrigger = true;
             target.transform.localPosition = spawn;
-            target.transform.localPosition = new Vector3(target.transform.position.x, random.Next(6,20), target.transform.position.z);
+            target.transform.localPosition = new Vector3(target.transform.position.x, random.Next(10,20), target.transform.position.z);
             target.transform.localScale = new Vector3(targetScale, targetScale, targetScale);
             target.transform.LookAt(transform);
 

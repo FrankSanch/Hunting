@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
+
 public class arrow : MonoBehaviour
 {
     Rigidbody body;
@@ -12,8 +15,18 @@ public class arrow : MonoBehaviour
     private bool hitsomething = false;
     private Vector3 wind;
 
+
+
+    private IEnumerator coroutine;
+
+  
+
+
+    private float windForce = 1f;
+
     void Start()
     {
+
         body = GetComponent<Rigidbody>();
         transform.rotation = Quaternion.LookRotation(body.velocity); 
 
@@ -21,7 +34,7 @@ public class arrow : MonoBehaviour
     void FixedUpdate()
     {
 
-        body.AddForce(wind * 10);
+        body.AddForce(wind/Mathf.Sqrt(Mathf.Pow(wind.x,2)+Mathf.Pow(wind.z,2))* windForce);
     }
     void Update()
     {
@@ -43,22 +56,45 @@ public class arrow : MonoBehaviour
             hitsomething = true;
             Stick();
             timer = 0f;
+
         }
-        
+
+        coroutine = arrowFailTimer(2);
+        StartCoroutine(coroutine);
     }
 
     private void Stick()
     {
         body.constraints = RigidbodyConstraints.FreezeAll;
     }
-    public void setVector(float x, float y ,float z)
+    public void setWindVector(float x, float y ,float z,float force)
     {
         wind.x = x;
         wind.y = y;
         wind.z = z;
+        windForce = force;
     }
+
+
+    private IEnumerator arrowFailTimer(int time)
+    {
+        yield return new WaitForSeconds(time);
+        if (GameData.marathon && GameData.arrowMissed == 3)
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+        else if (GameData.statique && GameData.arrowMissed == 10)
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+        else if (GameData.mobile && GameData.arrowMissed == 10)
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+        else if (GameData.hunt && GameData.arrowMissed == 4)
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+    }
+
     public Vector3 getWindVector()
     {
         return wind;
+
     }
 }

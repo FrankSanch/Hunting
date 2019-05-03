@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Shoot : MonoBehaviour
 {
@@ -26,26 +28,30 @@ public class Shoot : MonoBehaviour
     public GameObject windArrows;
     public float angleWind;
     public float vectorWind;
-    public int localAmmo;
+    
 
     public TMPro.TMP_Text arrowText;
 
     public Animator animator;
 
-    float angleBetweenWindArrow = 0f;
+   float angleBetweenWindArrow = 0f;
     float surfaceOfContact = 0f;
+
 
     void Start()
     {
         changeWind();
 
+
+        GameData.arrowMissed = 0;
+
+
         //vectorwind = Mathf.Sqrt(Mathf.Pow(windVelocity.x, 2f) + Mathf.Pow(windVelocity.z, 2f));
 
         angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
         windArrows.transform.rotation = Quaternion.Euler(0, angleWind, 0);
-        localAmmo = GameData.ammoArrow;
-        arrowText.SetText("Arrows x" + localAmmo.ToString());
-
+        
+        
         animator = GetComponent<Animator>();
 
 
@@ -54,13 +60,10 @@ public class Shoot : MonoBehaviour
     void Update()
     {
 
-        timer = Time.time;
+        timer += Time.deltaTime;
+        
 
-        if(localAmmo==0)
-        {
-            Debug.Log("J'AI PU DE FLÈCHE");
-            localAmmo--;
-        }
+
 
         if (timer >= shootTime)
         {
@@ -76,7 +79,7 @@ public class Shoot : MonoBehaviour
                 mainSlider.value = shootPower;
                 animator.SetFloat("Power", shootPower);
                 animator.SetBool("Shot", true);
-                Debug.Log(shootPower.ToString());
+                //Debug.Log(shootPower.ToString());
                 if (shootPower > 60)
                 {
                     animator.SetBool("Shot", false);
@@ -87,7 +90,7 @@ public class Shoot : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0))
             {
-
+                Debug.Log("Shoot");
                 GameObject arrowClone = Instantiate(arrowPrefab, arrowspawn.position, Quaternion.identity);
 
                 Rigidbody rigidbodycomponent = arrowClone.GetComponent<Rigidbody>();
@@ -99,18 +102,28 @@ public class Shoot : MonoBehaviour
                 angleBetweenWindArrow =Vector2.Angle(HorizontalWind, HorizontalArrow);
                 surfaceOfContact = 0.0091281f * 0.70f * Mathf.Sin(angleBetweenWindArrow);
 
-                arrowComponent.setVector(windVelocity.x, windVelocity.y, windVelocity.z);
+               
                 rigidbodycomponent.velocity = cam.transform.forward * shootPower;
 
                 shootPower = 3f;
                 timer = 0f;
                 mainSlider.value = shootPower;
-                localAmmo--;
-                arrowText.SetText("Arrows x" + localAmmo.ToString());
+
+                arrowComponent.setWindVector(windVelocity.x, windVelocity.y, windVelocity.z,shootPower);
+
+               
+                GameData.arrowMissed++;
+                GameData.ammoArrow--;
+                Debug.Log(GameData.arrowMissed);
+                
+                
+
+               
 
                 animator.SetFloat("Power", shootPower-3);
                 animator.SetBool("Shot", false);
                 //Debug.Log("2");
+
 
             }
 
@@ -128,6 +141,8 @@ public class Shoot : MonoBehaviour
             windArrows.transform.localRotation = Quaternion.Euler(0,vectorVent +transform.root.rotation.eulerAngles.y, 0);
         }*/
 
+
+        
 
     }
     public void changeWind()
