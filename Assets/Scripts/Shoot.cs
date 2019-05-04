@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Shoot : MonoBehaviour
 {
+    private IEnumerator coroutine;
     public Camera cam;
     public GameObject arrowPrefab;
     public Transform arrowspawn;
@@ -27,9 +29,9 @@ public class Shoot : MonoBehaviour
     public GameObject windArrows;
     public float angleWind;
     public float vectorWind;
-    public int localAmmo;
+    
 
-    public TMPro.TMP_Text arrowText;
+    
     public TMPro.TMP_Text windspeedText;
 
     public Animator animator;
@@ -52,8 +54,8 @@ public class Shoot : MonoBehaviour
 
         angleWind = Mathf.Atan2(windVelocity.x, windVelocity.z) * Mathf.Rad2Deg;
         windArrows.transform.rotation = Quaternion.Euler(0, angleWind, 0);
-        localAmmo = GameData.ammoArrow;
-        arrowText.SetText("Arrows x" + GameData.ammoArrow.ToString());
+        
+       
         windspeedText.SetText((windSpeed*3.6).ToString("0") + "Km/h");
 
         animator = GetComponent<Animator>();
@@ -63,17 +65,14 @@ public class Shoot : MonoBehaviour
 
     void Update()
     {
+
+        
         
         timer = Time.time;
         timeInterval += Time.deltaTime;
         windspeedText.SetText((windSpeed * 3.6).ToString("0") + "Km/h");
-        if (localAmmo==0)
-        {
-            Debug.Log("J'AI PU DE FLÈCHE");
-            localAmmo--;
-        }
-
-        if (timeInterval >= shootTime)
+       
+        if (timeInterval >= shootTime && GameData.ammoArrow > 0)
         {
             if(Input.GetMouseButtonDown(0))
             {
@@ -120,9 +119,11 @@ public class Shoot : MonoBehaviour
                 timeInterval = 0f;
 
                 mainSlider.value = shootPower;
-                localAmmo--;
-                arrowText.SetText("Arrows x"+ localAmmo.ToString());
+
                 
+                GameData.ammoArrow--;
+
+               
 
                 animator.SetFloat("Power", shootPower-3);
                 animator.SetBool("Shot", false);
@@ -171,10 +172,15 @@ public class Shoot : MonoBehaviour
     {
         surfaceOfContact = arrorDiameter * arrowLenght * Mathf.Sin(angleBetweenWindArrow * Mathf.PI / 180f);
     }
+
     void SetWindForce()
     {
         SetCx();
         SetSurfaceOfContact();
         windForce = 0.5f * cx * rho * surfaceOfContact * windSpeed * windSpeed;
     }
-}
+
+   
+    }
+
+

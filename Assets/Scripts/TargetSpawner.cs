@@ -41,7 +41,7 @@ public class TargetSpawner : MonoBehaviour
         canMove = GameData.targetMobileOn;
         random = new Random();
 
-        SpawnTargets(1);
+       // SpawnTargets(1);
         levelText.SetText(GameData.level);
     }
 
@@ -132,13 +132,13 @@ public class TargetSpawner : MonoBehaviour
             shootComponent.ChangeWind();
             targetCount--;
         }
-        if(remainingTargets > 0 && targetCount < 1)
+        if(GameData.test == 1)
         {
             SpawnTargets(1);
+            GameData.test = 0;
         }
 
-        if(targetCount == 0)
-            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        
 
         scoreText.SetText("Score : " + totalScore.ToString());
     }

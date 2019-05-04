@@ -8,8 +8,7 @@ public class enemySpawner : MonoBehaviour
 {
 
     private List<GameObject> enemies = new List<GameObject>();
-
-    private IEnumerator coroutine;
+   
 
     private bool enableEnemies = GameData.enemyOn;
 
@@ -20,7 +19,7 @@ public class enemySpawner : MonoBehaviour
     public float enemyScale = 3f;
 
     public int enemyWave = 0;
-    public int numberOfWaves = 3;
+    public int numberOfWaves = 7;
     private int enemiesPerWave = 1;
 
 
@@ -33,6 +32,7 @@ public class enemySpawner : MonoBehaviour
     {
         if (enableEnemies)
         {
+            GameData.currentTime = 15;
             enableEnemies = GameData.enemyOn;
             random = new Random();
             SpawnEnemies(enemiesPerWave);
@@ -62,11 +62,13 @@ public class enemySpawner : MonoBehaviour
 
             if (enemyWave == 0)
             {
+                GameData.currentTime += 7 + 5 * enemiesPerWave;
                 enemiesPerWave++;
                 numberOfWaves--;
                 enemiesKilled.Clear();
                 enemies.Clear();
                 SpawnEnemies(enemiesPerWave);
+           
             }
 
           
@@ -104,9 +106,9 @@ public class enemySpawner : MonoBehaviour
             enemies.Add(enemy);
             enemyWave++;
 
-            coroutine = enemySpawnTime(10, enemy);
-            StartCoroutine(coroutine);
+            
         }
+        
 
     }
 
@@ -122,12 +124,6 @@ public class enemySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator enemySpawnTime(int time, GameObject enemy)
-    {
-        yield return new WaitForSeconds(time);
-
-       // if (enemy)
-        //SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
-    }
+    
 
 }
