@@ -39,8 +39,10 @@ public class arrow : MonoBehaviour
     {
         if (collision.collider.tag != "Arrow")
         {
+            
             hitsomething = true;
             Stick();
+            AudioManager.instance.Play("Hit");
             timer = 0f;
         }
         

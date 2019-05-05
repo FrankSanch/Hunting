@@ -128,6 +128,7 @@ public class Shoot : MonoBehaviour
                 animator.SetBool("Shot", false);
                 //Debug.Log("2");
                 shotMade = false;
+                AudioManager.instance.Play("ClickSound");
             }
 
         }

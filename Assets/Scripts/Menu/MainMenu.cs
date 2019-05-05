@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour
         GameData.ammoArrow = 4;
         GameData.level = "Level: Hunt";
     }
-
+    
     public void QuitGame()
     {
         Debug.Log("Quit!");
