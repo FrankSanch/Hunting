@@ -14,13 +14,13 @@ public class arrow : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody>();
-        transform.rotation = Quaternion.LookRotation(body.velocity); 
+        transform.rotation = Quaternion.LookRotation(body.velocity); //oriente la fleche vers sa direction
 
     }
     void FixedUpdate()
     {
 
-        body.AddForce(wind/Mathf.Sqrt(Mathf.Pow(wind.x,2)+Mathf.Pow(wind.z,2))* windForce);
+        body.AddForce(wind/Mathf.Sqrt(Mathf.Pow(wind.x,2)+Mathf.Pow(wind.z,2))* windForce); //effet du vent
     }
     void Update()
     {
@@ -31,7 +31,7 @@ public class arrow : MonoBehaviour
         }
         if (!hitsomething)
         {
-            transform.rotation = Quaternion.LookRotation(body.velocity);
+            transform.rotation = Quaternion.LookRotation(body.velocity); //oriente la fleche vers sa direction
         }
     }
 
@@ -48,7 +48,7 @@ public class arrow : MonoBehaviour
         
     }
 
-    private void Stick()
+    private void Stick() //stop la fleche de bouger
     {
         body.constraints = RigidbodyConstraints.FreezeAll;
     }

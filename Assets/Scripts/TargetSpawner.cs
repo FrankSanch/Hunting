@@ -128,8 +128,8 @@ public class TargetSpawner : MonoBehaviour
             targets.Remove(target);
             Destroy(target);
 
-            Shoot shootComponent = bow.GetComponent<Shoot>();
-            shootComponent.ChangeWind();
+            Shoot shootComponent = bow.GetComponent<Shoot>();  
+            shootComponent.ChangeWind();  //change le vent quand on touche une cible
             targetCount--;
         }
         if(GameData.test == 1)
@@ -139,10 +139,9 @@ public class TargetSpawner : MonoBehaviour
         }
 
 
-        if (GameData.hunt)
-        {
-            totalScore = GameData.totalScore;
-        }
+        
+        GameData.totalScore = totalScore;
+        
 
         scoreText.SetText("Score : " + totalScore.ToString());
     }

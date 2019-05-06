@@ -33,6 +33,6 @@ public class setArrow : MonoBehaviour
         
         if(GameData.ammoArrow == 0)
             Cursor.visible = true;
-        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+        SceneManager.LoadScene("Game Over", LoadSceneMode.Single);
     }
 }

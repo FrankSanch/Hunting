@@ -19,6 +19,10 @@ public class GameData : MonoBehaviour
 
     public static int test = 0;
     public static int totalScore;
+    public static int bestScoreStat;
+    public static int bestScoreMob;
+    public static int bestScoreMar;
+    public static int bestScoreHunt;
 
 
     private void Awake()
