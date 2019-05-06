@@ -58,6 +58,7 @@ public class destroyCubeTest : MonoBehaviour
     //La fonction qui fait attendre un certain nombre de temps
     private IEnumerator cubeCollision(int time)
     {
+    
         GameData.test = 1;
         yield return new WaitForSeconds(time);
         //On desactive le gameObject

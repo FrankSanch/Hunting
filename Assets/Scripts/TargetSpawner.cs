@@ -138,7 +138,11 @@ public class TargetSpawner : MonoBehaviour
             GameData.test = 0;
         }
 
-        
+
+        if (GameData.hunt)
+        {
+            totalScore = GameData.totalScore;
+        }
 
         scoreText.SetText("Score : " + totalScore.ToString());
     }
