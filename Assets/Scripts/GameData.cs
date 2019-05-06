@@ -18,6 +18,7 @@ public class GameData : MonoBehaviour
     public static bool mobile = false;
 
     public static int test = 0;
+    public static int totalScore;
 
 
     private void Awake()

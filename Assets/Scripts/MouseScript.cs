@@ -59,6 +59,7 @@ public class MouseScript : MonoBehaviour
         {
             Cursor.visible = true;
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+            GameData.totalScore = 0;
         }
 
         //On reset les rotation a chaque frame donc c'est pratiquement impossible de se rendre a 360 ou -360

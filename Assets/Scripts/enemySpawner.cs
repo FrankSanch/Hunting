@@ -19,20 +19,20 @@ public class enemySpawner : MonoBehaviour
     public float enemyScale = 3f;
 
     public int enemyWave = 0;
-    public int numberOfWaves = 7;
-    private int enemiesPerWave = 1;
+    public int numberOfWaves = 12;
+    private int enemiesPerWave = 2;
 
 
 
     //distance maximal et minimal pour faire apparaître les enemies
-    private int maxDistance = 20;
-    private int minDistance = 10;
+    private int maxDistance = 40;
+    private int minDistance = 15;
 
     void Start()
     {
         if (enableEnemies)
         {
-            GameData.currentTime = 15;
+            GameData.currentTime = 10;
             enableEnemies = GameData.enemyOn;
             random = new Random();
             SpawnEnemies(enemiesPerWave);
@@ -62,7 +62,7 @@ public class enemySpawner : MonoBehaviour
 
             if (enemyWave == 0)
             {
-                GameData.currentTime += 7 + 5 * enemiesPerWave;
+                GameData.currentTime = 7 + 5 * enemiesPerWave;
                 enemiesPerWave++;
                 numberOfWaves--;
                 enemiesKilled.Clear();

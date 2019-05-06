@@ -14,7 +14,7 @@ public class enemyCollision : MonoBehaviour
         //Verifier si la target est bel et bien touche par une fleche et non par le sol
         if (collision.gameObject.name == "arrow")
         {
-
+            GameData.totalScore += 10;
 
             if (GameData.marathon)
             {

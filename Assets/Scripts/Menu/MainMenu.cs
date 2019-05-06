@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
         GameData.test = 1;
         Cursor.visible = false;
         GameData.enemyOn = false;
+        GameData.totalScore = 0;
     }
 
     public void StartNormalModeMobile()
@@ -36,6 +37,7 @@ public class MainMenu : MonoBehaviour
         GameData.test = 1;
         Cursor.visible = false;
         GameData.enemyOn = false;
+        GameData.totalScore = 0;
     }
 
     public void StartMarathonMode()
@@ -49,6 +51,7 @@ public class MainMenu : MonoBehaviour
         GameData.level = "Level: Marathon";
         GameData.test = 1;
         Cursor.visible = false;
+        GameData.totalScore = 0;
         GameData.enemyOn = false;
     }
 
@@ -61,8 +64,9 @@ public class MainMenu : MonoBehaviour
         GameData.enemyOn = true;
         GameData.ammoArrow = 4;
         GameData.level = "Level: Hunt";
-        GameData.test = 1;
+        GameData.test = 0;
         Cursor.visible = false;
+        GameData.totalScore = 0;
 
     }
     
