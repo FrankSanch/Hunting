@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MouseScript : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class MouseScript : MonoBehaviour
     public float minX = -360F; 
     public float maxX = 360;
 
-    public float sensX = 15F; //Sensibilite en x
-    public float sensY = 15F; //Sensibilite en y
+    public float sensX = 5F; //Sensibilite en x
+    public float sensY = 5F; //Sensibilite en y
 
 
     //Max et min de haut en bas
@@ -22,6 +23,9 @@ public class MouseScript : MonoBehaviour
     float rotX = 0F;
     float rotY = 0F;
 
+    float mouseXInput;
+    float mouseYInput;
+
     //Les valeurs de rotX et rotY seront ajoute a ces list 
     //Aussi on initialise les moyennes de rotation a 0
     private List<float> rotArrayX = new List<float>();
@@ -30,8 +34,8 @@ public class MouseScript : MonoBehaviour
     private List<float> rotArrayY = new List<float>();
     float rotMoyenneY = 0F;
 
-    //Limite a 20 le nombre de valeurs de rotX et rotY qui peuvent etre mit dans les rotArray
-    public float frameCounter = 20;
+    //Limite a 5 le nombre de valeurs de rotX et rotY qui peuvent etre mit dans les rotArray
+    public float frameCounter = 1;
 
     //Cest dure a comprendre mais cest avec Quaternion que tout les rotation seront applique, On le set dans start
     Quaternion originalRotation;
@@ -49,49 +53,66 @@ public class MouseScript : MonoBehaviour
         originalRotation = transform.localRotation;
     }
 
-    void LateUpdate()
+    void Update()
     {
+        if (Input.GetKey("escape"))
+        {
+            Cursor.visible = true;
+            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+            GameData.totalScore = 0;
+        }
+
         //On reset les rotation a chaque frame donc c'est pratiquement impossible de se rendre a 360 ou -360
+
         rotMoyenneX = 0;
         rotMoyenneY = 0;
-      
-            //Get l'input de la souris mais smooth
-            rotY += Input.GetAxis("Mouse Y") * sensY;
-            rotX += Input.GetAxis("Mouse X") * sensX;
 
-            rotArrayY.Add(rotY);
-            rotArrayX.Add(rotX);
+        mouseXInput = Input.GetAxis("Mouse X");
+        mouseYInput = Input.GetAxis("Mouse Y");
 
-            if (rotArrayY.Count >= frameCounter)
-            {
-                rotArrayY.RemoveAt(0);
-            }
-            if (rotArrayX.Count >= frameCounter)
-            {
-                rotArrayX.RemoveAt(0);
-            }
-             // On ajoute toutes les rotations avant de faire leur moyenne en x et y
-            for (int j = 0; j < rotArrayY.Count; j++)
-            {
-                rotMoyenneY += rotArrayY[j];
-            }
-            for (int i = 0; i < rotArrayX.Count; i++)
-            {
-                rotMoyenneX += rotArrayX[i];
-            }
+       // mouseXInput = mouseXInput * Mathf.Abs(mouseXInput);
+        //mouseYInput = mouseYInput * Mathf.Abs(mouseYInput);
 
-            //calcul de la moyenne
-            rotMoyenneY /= rotArrayY.Count;
-            rotMoyenneX /= rotArrayX.Count;
 
-            rotMoyenneY = View(rotMoyenneY, minY, maxY);
-            rotMoyenneX = View(rotMoyenneX, minX, maxX);
+        //Get l'input de la souris mais smooth
 
-            //Ca tourne
-            Quaternion yQuaternion = Quaternion.AngleAxis(rotMoyenneY, Vector3.left);
-            Quaternion xQuaternion = Quaternion.AngleAxis(rotMoyenneX, Vector3.up);
+        rotY += mouseYInput * sensY;
 
-            transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+        rotX += mouseXInput * sensX;
+
+        rotArrayY.Add(rotY);
+        rotArrayX.Add(rotX);
+
+        if (rotArrayY.Count >= frameCounter)
+        {
+            rotArrayY.RemoveAt(0);
+        }
+        if (rotArrayX.Count >= frameCounter)
+        {
+            rotArrayX.RemoveAt(0);
+        }
+            // On ajoute toutes les rotations avant de faire leur moyenne en x et y
+        for (int j = 0; j < rotArrayY.Count; j++)
+        {
+            rotMoyenneY += rotArrayY[j];
+        }
+        for (int i = 0; i < rotArrayX.Count; i++)
+        {
+            rotMoyenneX += rotArrayX[i];
+        }
+
+        //calcul de la moyenne
+        rotMoyenneY /= rotArrayY.Count;
+        rotMoyenneX /= rotArrayX.Count;
+
+        rotMoyenneY = View(rotMoyenneY, minY, maxY);
+        rotMoyenneX = View(rotMoyenneX, minX, maxX);
+
+        //Ca tourne
+        Quaternion yQuaternion = Quaternion.AngleAxis(rotMoyenneY, Vector3.left);
+        Quaternion xQuaternion = Quaternion.AngleAxis(rotMoyenneX, Vector3.up);
+
+        transform.localRotation = originalRotation * xQuaternion * yQuaternion;
        
     }
 

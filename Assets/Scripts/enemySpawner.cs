@@ -7,11 +7,8 @@ using UnityEngine.SceneManagement;
 public class enemySpawner : MonoBehaviour
 {
 
-    
-
     private List<GameObject> enemies = new List<GameObject>();
-
-    private IEnumerator coroutine;
+   
 
     private bool enableEnemies = GameData.enemyOn;
 
@@ -19,29 +16,23 @@ public class enemySpawner : MonoBehaviour
 
     public GameObject enemyPrefab;
 
-    private List<float> timesList = new List<float>();
-
     public float enemyScale = 3f;
 
     public int enemyWave = 0;
-    public int numberOfWaves = 0;
-    private int enemiesPerWave = 1;
+    public int numberOfWaves = 12;
+    private int enemiesPerWave = 2;
 
-    public float timePerWave;
-
-   
-    bool initialTimeBool = true;
 
 
     //distance maximal et minimal pour faire apparaître les enemies
-    private int maxDistance = 18;
-    private int minDistance = 10;
+    private int maxDistance = 40;
+    private int minDistance = 15;
 
     void Start()
     {
         if (enableEnemies)
         {
-            timePerWave = 15f;
+            GameData.currentTime = 10;
             enableEnemies = GameData.enemyOn;
             random = new Random();
             SpawnEnemies(enemiesPerWave);
@@ -55,13 +46,6 @@ public class enemySpawner : MonoBehaviour
         if (enableEnemies)
         {
             List<GameObject> enemiesKilled = new List<GameObject>();
-            if (initialTimeBool)
-            {
-                GameData.currentTime = 22f;
-                initialTimeBool = false;
-            }
-
-            
             foreach (GameObject enemy in enemies)
             {
                 if (!enemy.activeSelf)
@@ -69,7 +53,7 @@ public class enemySpawner : MonoBehaviour
                     enemiesKilled.Add(enemy);
                 }
             }
-            
+
             foreach (GameObject enemy in enemiesKilled)
             {
                enemies.Remove(enemy);
@@ -78,18 +62,16 @@ public class enemySpawner : MonoBehaviour
 
             if (enemyWave == 0)
             {
+                GameData.currentTime = 7 + 5 * enemiesPerWave;
                 enemiesPerWave++;
-                numberOfWaves++;
+                numberOfWaves--;
                 enemiesKilled.Clear();
                 enemies.Clear();
                 SpawnEnemies(enemiesPerWave);
-                GameData.currentTime = timePerWave;
-                timesList.Clear();
+           
             }
 
-  
-                GameData.currentTime -= Time.deltaTime;
-
+          
         }
         
     }
@@ -98,7 +80,7 @@ public class enemySpawner : MonoBehaviour
     {
         //On crée une vecteur de direction avec un angle random (entre 0 et 360deg) autour du joueur
         Vector3 direction = transform.forward;
-        direction = Quaternion.AngleAxis(random.Next(0, random.Next(0, 2 * random.Next(0, 180))), Vector3.up) * direction;
+        direction = Quaternion.AngleAxis(random.Next(0, random.Next(0, random.Next(0,360))), Vector3.up) * direction;
 
         //On crée une raie qui part du joueur vers la direction crée précédemment
         Ray ray = new Ray(transform.position, direction);
@@ -124,15 +106,10 @@ public class enemySpawner : MonoBehaviour
             enemies.Add(enemy);
             enemyWave++;
 
-            timePerWave = timePerWave + (7 * enemiesPerWave);
-            coroutine = enemySpawnTime(timePerWave, enemy);
-
             
-
-            StartCoroutine(coroutine);
         }
-
         
+
     }
 
     void Checkspawn(Transform enemy)
@@ -147,20 +124,6 @@ public class enemySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator enemySpawnTime(float time, GameObject enemy)
-    {
-        Debug.Log("ime");
-       
-
-
-            timesList.Add(time);
-            yield return new WaitForSeconds(time);
-  
-        if (enemy.activeSelf)
-        {
-            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
-        }
-       
-    }
+    
 
 }

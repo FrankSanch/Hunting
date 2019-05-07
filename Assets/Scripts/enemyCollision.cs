@@ -8,15 +8,26 @@ public class enemyCollision : MonoBehaviour
     public float force = 3000.0f;//La force de l'impact
     
 
-   
+    //S'execute quand la fleche touche a la cible
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Reee");
-        
+        //Verifier si la target est bel et bien touche par une fleche et non par le sol
         if (collision.gameObject.name == "arrow")
         {
-            Debug.Log("allo");
-            //La flèche colle au cube 
+            GameData.totalScore += 10;
+
+            if (GameData.marathon)
+            {
+                Debug.Log("Target Hit");
+                GameData.ammoArrow = 3;
+            }
+
+            if (GameData.hunt)
+            {
+                Debug.Log("test");
+                GameData.ammoArrow = 4;
+            }
+
             collision.gameObject.transform.SetParent(this.transform, true);
 
             coroutine = enemyHit(2);

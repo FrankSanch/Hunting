@@ -5,16 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
+
     public void StartNormalModeStatique()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = false;
         GameData.targetMobileOn = false;
-        GameData.enemyOn = true;
+        GameData.enemyOn = false;
         GameData.ammoArrow = 10;
         GameData.level = "Level: Statique";
         GameData.statique = true;
-        GameData.arrowMissed = 0;
+        GameData.test = 1;
+        Cursor.visible = false;
+        GameData.enemyOn = false;
+        GameData.totalScore = 0;
     }
 
     public void StartNormalModeMobile()
@@ -24,42 +33,46 @@ public class MainMenu : MonoBehaviour
         GameData.targetMobileOn = true;
         GameData.ammoArrow = 10;
         GameData.level = "Level: Mobile";
-        GameData.arrowMissed = 0;
         GameData.mobile = true;
+        GameData.test = 1;
+        Cursor.visible = false;
+        GameData.enemyOn = false;
+        GameData.totalScore = 0;
     }
-
 
     public void StartMarathonMode()
     {
-        //Debug.Log("wtf");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = false;
         GameData.targetMobileOn = false;
         GameData.marathon = true;
-        GameData.arrowMissed = 0;
-
         GameData.timerMarathon = true;
         GameData.ammoArrow = 3;
         GameData.level = "Level: Marathon";
-
+        GameData.test = 1;
+        Cursor.visible = false;
+        GameData.totalScore = 0;
+        GameData.enemyOn = false;
     }
 
     public void StartHuntMode()
     {
+        GameData.hunt = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameData.windOn = true;
         GameData.targetMobileOn = true;
         GameData.enemyOn = true;
         GameData.ammoArrow = 4;
         GameData.level = "Level: Hunt";
-        GameData.hunt = true;
-        GameData.arrowMissed = 0;
-    }
+        GameData.test = 0;
+        Cursor.visible = false;
+        GameData.totalScore = 0;
 
+    }
+    
     public void QuitGame()
     {
         Debug.Log("Quit!");
         Application.Quit();
     }
-
 }

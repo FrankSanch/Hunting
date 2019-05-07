@@ -29,20 +29,19 @@ public class TargetSpawner : MonoBehaviour
     private Random random;
 
     //distance maximal et minimal pour faire apparaître les cibles
-    private int maxDistance = 60;
+    private int maxDistance = 70;
     private int minDistance = 30;
 
-    //vitesse maximal et minimal de pour la mouvement des cibles en deg
+    //vitesse maximal et minimal de pour la mouvement des cibles en deg/s
     private int maxSpeed = 20;
     private int minSpeed = 10;
 
     void Start()
     {
-      
         canMove = GameData.targetMobileOn;
         random = new Random();
 
-        SpawnTargets(1);
+       // SpawnTargets(1);
         levelText.SetText(GameData.level);
     }
 
@@ -130,16 +129,20 @@ public class TargetSpawner : MonoBehaviour
             Destroy(target);
 
             Shoot shootComponent = bow.GetComponent<Shoot>();
-            shootComponent.changeWind();
+            shootComponent.ChangeWind();
             targetCount--;
         }
-        if(remainingTargets > 0 && targetCount < 1)
+        if(GameData.test == 1)
         {
             SpawnTargets(1);
+            GameData.test = 0;
         }
 
-        if(targetCount == 0)
-            SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+
+        if (GameData.hunt)
+        {
+            totalScore = GameData.totalScore;
+        }
 
         scoreText.SetText("Score : " + totalScore.ToString());
     }
