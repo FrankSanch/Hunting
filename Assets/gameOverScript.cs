@@ -81,6 +81,7 @@ public class gameOverScript : MonoBehaviour
         float timer = Time.time;
         if(timer-timestart>5)
         {
+            GameData.huntScore = 0;
             SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
         }
     }

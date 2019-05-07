@@ -48,6 +48,7 @@ public class Shoot : MonoBehaviour
     float test;
     void Start()
     {
+
         ChangeWind();
 
 
