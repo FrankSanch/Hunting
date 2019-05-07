@@ -18,7 +18,8 @@ public class GameData : MonoBehaviour
     public static bool mobile = false;
 
     public static int test = 0;
-    public static int totalScore = 0;
+    public static int huntScore;
+    public static int totalScore;
     public static int bestScoreStat = 0;
     public static int bestScoreMob = 0;
     public static int bestScoreMar = 0;

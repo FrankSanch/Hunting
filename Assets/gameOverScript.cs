@@ -5,22 +5,42 @@ using UnityEngine.SceneManagement;
 public class gameOverScript : MonoBehaviour
 {
 
-    public TMPro.TMP_Text windspeedText;
+    public TMPro.TMP_Text gameOverText;
     float timer=0;
     float timestart = 0;
     // Start is called before the first frame update
     void Start()
     {
-        timestart = Time.time;
         int highScore = 0;
-        windspeedText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nYour High score is " + highScore);
+        timestart = Time.time;
+        if (GameData.level == "Level: Statique")
+        {
+            highScore = GameData.bestScoreStat;
+           
+        }
+        else if (GameData.level == "Level: Mobile")
+        {
+            highScore = GameData.bestScoreMob;
+
+        }
+        else if (GameData.level == "Level: Marathon")
+        {
+            highScore = GameData.bestScoreMar;
+        }
+        else if (GameData.level == "Level: Hunt")
+        {
+            highScore = GameData.bestScoreHunt;
+        }
+
+    
+        gameOverText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nYour High score is " + highScore);
         if (GameData.level == "Level: Statique")
         {
             highScore = GameData.bestScoreStat;
             if (GameData.totalScore > GameData.bestScoreStat)
             {
                 GameData.bestScoreStat = GameData.totalScore;
-                windspeedText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nNew High Score");
+                gameOverText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nNew High Score");
             }
         }
         else if (GameData.level == "Level: Mobile")
@@ -29,7 +49,7 @@ public class gameOverScript : MonoBehaviour
             if (GameData.totalScore > GameData.bestScoreMob)
             {
                 GameData.bestScoreMob = GameData.totalScore;
-                windspeedText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nNew High Score");
+                gameOverText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nNew High Score");
             }
 
         }
@@ -39,7 +59,7 @@ public class gameOverScript : MonoBehaviour
             if (GameData.totalScore > GameData.bestScoreMar)
             {
                 GameData.bestScoreMar = GameData.totalScore;
-                windspeedText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nNew High Score");
+                gameOverText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nNew High Score");
             }
         }
         else if (GameData.level == "Level: Hunt")
@@ -48,7 +68,7 @@ public class gameOverScript : MonoBehaviour
             if (GameData.totalScore > GameData.bestScoreHunt)
             {
                 GameData.bestScoreHunt = GameData.totalScore;
-                windspeedText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nNew High Score");
+                gameOverText.SetText("Game Over \n Your score in " + GameData.level + " is " + GameData.totalScore + "\nNew High Score");
 
             }
         }

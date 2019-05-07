@@ -139,7 +139,10 @@ public class TargetSpawner : MonoBehaviour
         }
 
 
-        
+        if(GameData.hunt)
+        {
+            totalScore = GameData.huntScore;
+        }
         GameData.totalScore = totalScore;
         
 

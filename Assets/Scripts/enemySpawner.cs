@@ -62,7 +62,7 @@ public class enemySpawner : MonoBehaviour
 
             if (enemyWave == 0)
             {
-                GameData.currentTime = 7 + 5 * enemiesPerWave;
+                GameData.currentTime = 5 + 3 * enemiesPerWave;
                 enemiesPerWave++;
                 numberOfWaves--;
                 enemiesKilled.Clear();

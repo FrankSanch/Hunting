@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = false;
         GameData.enemyOn = false;
         GameData.totalScore = 0;
+        GameData.hunt = false;
     }
 
     public void StartNormalModeMobile()
@@ -38,6 +39,7 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = false;
         GameData.enemyOn = false;
         GameData.totalScore = 0;
+        GameData.hunt = false;
     }
 
     public void StartMarathonMode()
@@ -53,6 +55,7 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = false;
         GameData.totalScore = 0;
         GameData.enemyOn = false;
+        GameData.hunt = false;
     }
 
     public void StartHuntMode()

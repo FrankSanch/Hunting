@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82704ff5e41cf97459a424ecf2d1249c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windspeedText: {fileID: 661854229}
+  gameOverText: {fileID: 661854229}
 --- !u!1 &661854227
 GameObject:
   m_ObjectHideFlags: 0
